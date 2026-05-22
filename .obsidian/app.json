@@ -1,0 +1,22 @@
+{
+  "showUnsupportedFiles": true,
+  "defaultViewMode": "preview",
+  "vimMode": false,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "0-inbox",
+  "attachmentFolderPath": "./Assets",
+  "promptDelete": false,
+  "readableLineLength": false,
+  "userIgnoreFilters": [
+    "node_modules",
+    ".next",
+    ".turbo",
+    "dist",
+    "build",
+    "out",
+    ".git",
+    ".vercel",
+    ".cache"
+  ],
+  "alwaysUpdateLinks": true
+}
