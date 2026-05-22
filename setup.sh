@@ -676,7 +676,7 @@ except Exception:
   else
     {
       printf '\n%s\n' "# HQ setup: Pam alias"
-      printf "%s\n" "alias pam='claude --dangerously-skip-permissions --agent pam'"
+      printf "%s\n" "alias pam='cd ~/hq2 && claude --dangerously-skip-permissions --agent pam'"
     } >> "$SHELL_RC"
     ok "pam alias added to $SHELL_RC (restart shell or 'source' it to use 'pam')"
   fi
