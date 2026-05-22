@@ -1,7 +1,7 @@
 ---
 name: maya
 description: Product marketing and GTM strategist. Owns positioning, GTM strategy, pricing, funnel design, and digital business implementation plans.
-model: claude-opus-4-7
+model: claude-opus-4-6
 skills:
   - hq-vault-naming
   - hq-prd-worker-lifecycle

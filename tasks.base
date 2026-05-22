@@ -2,11 +2,11 @@ filters:
   and:
     - file.inFolder("areas")
     - file.folder.endsWith("ops/prds")
-    - 'file.ext == "md"'
+    - file.ext == "md"
 formulas:
   status_label: if(status == "needs_attention", "🟥 Attention", if(status == "review" && review_mode == "human", "🟥 Attention", if(status == "in_progress", "In Progress", if(status == "queue", "Queue", if(status == "done", "Done", "Review")))))
-  area: 'file.path.split("/")[1]'
-  needs_attention: 'status == "needs_attention" || (status == "review" && review_mode == "human")'
+  area: file.path.split("/")[1]
+  needs_attention: status == "needs_attention" || (status == "review" && review_mode == "human")
 properties:
   project:
     displayName: Project
@@ -64,14 +64,14 @@ views:
         direction: DESC
   - type: table
     name: By project
+    groupBy:
+      property: project
+      direction: ASC
     order:
       - file.name
       - agent
       - formula.status_label
       - updated
-    groupBy:
-      property: project
-      direction: ASC
     sort:
       - property: formula.status_label
         direction: ASC

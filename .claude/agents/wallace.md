@@ -1,7 +1,7 @@
 ---
 name: wallace
 description: Backend developer. Implements production Node.js services, API routes, and server-side logic.
-model: claude-opus-4-7
+model: claude-opus-4-6
 skills:
   - hq-vault-naming
   - hq-prd-worker-lifecycle
@@ -12,7 +12,7 @@ skills:
   - obsidian-markdown
 hooks:
   PreToolUse:
-    - matcher: "Edit|Write"
+    - matcher: 'Edit|Write'
       hooks:
         - type: command
           command: |

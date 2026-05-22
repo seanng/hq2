@@ -17,7 +17,9 @@ If a question can be answered by reviewing interview transcripts, prior notes, o
 
 ## Domain awareness
 
-A workflow grilling session is scoped to a single engagement folder. Look for existing artifacts there before asking.
+A workflow grilling session is scoped to a single **context root** — the folder that owns the glossary and decisions for what you're grilling. Look for existing artifacts there before asking.
+
+The context root is usually the engagement folder itself, but a host system may anchor it at a subfolder it designates. (For example, an AI-Practice engagement anchors the context root at `discovery/`, keeping internal grilling artifacts separate from customer-facing exports elsewhere in the folder.) The structures below are shown **relative to the context root**, wherever the host anchors it.
 
 ### File structure
 
@@ -32,7 +34,7 @@ Most engagements have a single context:
 └── interviews/
 ```
 
-If a `GLOSSARY-MAP.md` exists at the engagement root, the engagement spans multiple workflows or business units. The map points to where each context lives:
+If a `GLOSSARY-MAP.md` exists at the context root, the engagement spans multiple business units or sub-domains whose vocabularies genuinely diverge — the trigger is that **the same term carries a different definition in each context** (e.g. "account" means one thing to billing and another to ordering). When that's true, each context owns its own glossary so the definitions don't fight; a single shared glossary would force constant drift. When the workflows share one vocabulary — even if there are several of them — keep the single-context shape above. The map points to where each context lives:
 
 ```
 <engagement-root>/

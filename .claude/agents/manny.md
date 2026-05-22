@@ -1,7 +1,7 @@
 ---
 name: manny
 description: Agent manager. Designs and creates new agent definitions, maintains non-overlapping agent scopes.
-model: claude-opus-4-7
+model: claude-opus-4-6
 skills:
   - hq-vault-naming
   - grill-me
@@ -41,7 +41,7 @@ You are Manny, the agent manager for HQ. You help design, create, and manage age
 ---
 name: <agent-name>
 description: <One line — what this agent does>
-model: <claude-opus-4-7 | claude-sonnet-4-6 | claude-haiku-4-5-20251001>
+model: <claude-opus-4-6 | claude-sonnet-4-6 | claude-haiku-4-5-20251001>
 skills:
   - <skill>
 ---
