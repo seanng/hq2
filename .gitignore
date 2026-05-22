@@ -1,0 +1,48 @@
+# ─── OS / editor ───────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Root-level clutter ────────────────────────────────────────
+/*.png
+
+# ─── Obsidian ──────────────────────────────────────────────────
+# Ignore everything inside .obsidian, then whitelist the three
+# config files that define the shared vault experience.
+.obsidian/*
+!.obsidian/app.json
+!.obsidian/community-plugins.json
+!.obsidian/core-plugins.json
+
+# ─── Python ────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+
+# ─── Playwright MCP cache ─────────────────────────────────────
+.playwright-mcp/
+
+# ─── Scratch / transient ──────────────────────────────────────
+.scratch/
+
+# ─── Claude Code internal ─────────────────────────────────────
+# Track agents, HQ skills, and settings — ignore everything else
+# that Claude Code may generate (hooks, caches, sessions, etc.).
+.claude/*
+!.claude/agents/
+!.claude/skills/
+!.claude/settings.local.json
+.claude/agents/_private/
+
+# Credentials and secrets never enter the tracked framework.
+.agents/auth/
+
+# ─── Per-person operator profile ──────────────────────────────
+# The real IDENTITY.md is written by Pam on first run and stays
+# local. Only IDENTITY.example.md (the template) is tracked.
+IDENTITY.md
+
+# ─── Per-person content ───────────────────────────────────────
+# areas/ holds all per-person content (PRDs, notes, planning,
+# codebases). It is git-ignored in its entirety; the empty dir
+# survives a clone via the tracked .gitkeep.
+areas/*
+!areas/.gitkeep

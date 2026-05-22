@@ -1,0 +1,61 @@
+filters:
+  and:
+    - file.inFolder("1-projects")
+    - file.folder.endsWith("ops/prds")
+formulas:
+  status_label: if(status == "needs_attention", "🟥 Attention", if(status == "review" && review_mode == "human", "🟥 Attention", if(status == "in_progress", "In Progress", if(status == "queue", "Queue", if(status == "done", "Done", "Review")))))
+properties:
+  project:
+    displayName: Project
+  file.name:
+    displayName: Title
+  agent:
+    displayName: Agent
+  formula.status_label:
+    displayName: Status
+  updated:
+    displayName: Updated
+views:
+  - type: table
+    name: Active
+    filters:
+      or:
+        - status == "needs_attention"
+        - status == "review"
+        - status == "in_progress"
+        - status == "queue"
+    order:
+      - project
+      - file.name
+      - agent
+      - formula.status_label
+      - updated
+    columnSize:
+      note.project: 156
+      note.id: 83
+  - type: table
+    name: View all
+    order:
+      - project
+      - file.name
+      - agent
+      - formula.status_label
+      - updated
+    sort:
+      - property: updated
+        direction: ASC
+      - property: formula.status_label
+        direction: ASC
+    columnSize:
+      formula.status_label: 94
+  - type: table
+    name: Done
+    filters:
+      and:
+        - status == "done"
+    order:
+      - project
+      - file.name
+      - agent
+      - formula.status_label
+      - updated
