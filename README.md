@@ -5,9 +5,9 @@ agents, skills, and conventions for running your work with an agentic team. It i
 the control plane — the agents and the rules they follow — kept cleanly separate
 from your personal content.
 
-> **Status:** greenfield skeleton (Phase 1). This repo is a validated structural
-> scaffold. Content migration, the PRD-discovery rewrite, and cutover from the
-> previous `~/hq` vault are later phases and are **not** part of this skeleton yet.
+> **Status:** working framework. The agents, skills, conventions, and the
+> PRD-tracking dashboard (`tasks.base`) are live. On a fresh clone `areas/` is
+> empty — your own projects, PRDs, and notes populate it as you work.
 
 ## The core split: tracked OS, ignored content
 
@@ -32,7 +32,7 @@ hq2/
   system/               # tracked — shared conventions and templates only (no personal data)
     conventions/        #   cross-cutting conventions the agents follow
     templates/          #   prd / plan / project templates
-  tasks.base            # tracked — Obsidian Base for PRD tracking (rewrite deferred)
+  tasks.base            # tracked — Obsidian Base; PRD dashboard over areas/**/ops/prds
   README.md             # tracked — this file
   IDENTITY.example.md   # tracked — fill-in-the-blanks operator-profile template
   IDENTITY.md           # GITIGNORED — your real profile (created on first run)
@@ -71,7 +71,9 @@ hq2/
 
 ## Notes
 
-- This skeleton deliberately contains **no** migrated content and **no** personal
-  data. It is the framework only.
-- `tasks.base` is carried over as-is; its rewrite for the hq2 `areas/**/ops/prds/`
-  discovery model is deferred to a later phase.
+- A fresh clone contains **no** personal content and **no** personal data —
+  `areas/` is empty and `IDENTITY.md` is absent. You get the framework only; your
+  work and profile stay local and git-ignored.
+- PRD discovery is structure-agnostic: a project is any directory containing an
+  `ops/prds/` folder, found via `areas/**/ops/prds/*.md` at any depth. `tasks.base`
+  surfaces them as a dashboard.
