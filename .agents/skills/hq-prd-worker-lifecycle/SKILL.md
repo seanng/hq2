@@ -85,7 +85,7 @@ Be explicit about what happened and what is needed next.
 
 Workers sometimes produce transient files during execution: screenshots, debug HTML, dig dumps, CLI inspection output, scratch logs. These must not leak into the project root or the vault.
 
-- Write all scratch artifacts to `<working_path>/.scratch/` only. Never write them to the project root, `~/hq/`, or anywhere outside `<working_path>`. Example: a Playwright screenshot goes to `<working_path>/.scratch/vercel-deploy-full.png`, not `~/hq/vercel-deploy-full.png`.
+- Write all scratch artifacts to `<working_path>/.scratch/` only. Never write them to the project root, the vault root, or anywhere outside `<working_path>`. Example: a Playwright screenshot goes to `<working_path>/.scratch/vercel-deploy-full.png`, not the vault root.
 - Before writing to `.scratch/`, add `.scratch/` to the project's `.gitignore` if it is not already present. Nothing in `.scratch/` should ever be committed.
 - Clean up `.scratch/` (`rm -rf` it) before transitioning the PRD to `review` or `done`. The folder must not exist when the PRD is closed.
 - If a verification artifact is genuinely valuable as evidence for the Result section, summarize it textually or link to a permanent location. Do not leave binaries in the working tree.
