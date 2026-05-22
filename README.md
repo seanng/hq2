@@ -46,10 +46,17 @@ hq2/
 
 ## Getting started
 
-1. **Clone** this repo and run the setup flow to install the agents and skills.
-2. **Create your profile.** Copy `IDENTITY.example.md` to `IDENTITY.md` and fill
-   it in — or start a first session with Pam, who will prompt you for it. Your
-   `IDENTITY.md` is git-ignored and stays local.
+1. **Clone** this repo, then run `./setup.sh` from the repo root. The installer
+   (macOS) checks prerequisites, installs the CLIs / Python / Node packages the
+   skills depend on, bootstraps the Tavily key and Google Workspace OAuth,
+   registers the Claude Code plugin, and seeds an `IDENTITY.md` for you. It is
+   idempotent and derives the vault root from its own location, so it works
+   wherever you cloned it. Use `./setup.sh --dry-run` first to preview every
+   step without changing anything.
+2. **Create your profile.** `setup.sh` seeds `IDENTITY.md` from
+   `IDENTITY.example.md` if it is missing, but leaves it for you to fill in —
+   either edit it by hand or start a first session with Pam, who will interview
+   you and populate it. Your `IDENTITY.md` is git-ignored and stays local.
 3. **Work happens under `areas/`.** Your projects, PRDs, notes, and codebases
    live there. None of it is tracked by this repo.
 
