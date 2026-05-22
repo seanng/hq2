@@ -1,6 +1,6 @@
 ---
 name: hq-pm-authoring
-description: Shared HQ project-management authoring conventions for parent plans, PRDs, AGENTS.md curation, project scaffolding, and dependency declaration. Use when an agent needs to author or update a parent initiative plan, decompose work into a PRD set, scaffold a new project under the vault, replan mid-execution, or set up dispatchable PRD frontmatter. This is the authoring counterpart to `hq-prd-worker-lifecycle`.
+description: Shared HQ project-management authoring conventions for parent plans, PRDs, AGENTS.md curation, project scaffolding, and dependency declaration. Use when an agent needs to author or update a parent initiative plan, decompose work into a PRD set, scaffold a new project in the vault, replan mid-execution, or set up dispatchable PRD frontmatter. This is the authoring counterpart to `hq-prd-worker-lifecycle`.
 ---
 
 # HQ PM Authoring
@@ -13,7 +13,7 @@ The matched-pair sibling skill `hq-prd-worker-lifecycle` covers the execution si
 
 Use this skill when you need to:
 
-- Scaffold a new project under `1-projects/`.
+- Scaffold a new project (any directory that holds an `ops/prds/` folder).
 - Author a new parent initiative plan.
 - Decompose a plan into a PRD set with explicit dependencies.
 - Curate `AGENTS.md` so workers have durable, current context.
@@ -28,39 +28,81 @@ Do not use this skill for:
 
 ## Vault Layout
 
-HQ is an Obsidian vault at `~/hq` following the PARA framework. The PM authoring surface lives inside `1-projects/`.
+HQ is an Obsidian vault. Per-person content lives under `areas/` (one folder per
+business area or domain), with the operating system (`.claude/`, `.agents/`,
+`system/`) tracked separately at the vault root. The PM authoring surface lives
+inside `areas/`.
+
+Areas have **heterogeneous shapes**: some go area → projects directly, some
+introduce intermediate layers (e.g. `services/<svc>/projects/<project>/`), and
+some have no projects at all. Project structure is therefore **not encoded in a
+fixed path depth**.
 
 ```
-~/hq/
-├── 0-inbox/
-├── 1-projects/<project>/
-│   ├── README.md              # Project home note
-│   ├── AGENTS.md              # Durable worker context (PM-curated)
-│   ├── ops/
-│   │   ├── plans/             # Parent initiative plans
-│   │   └── prds/              # Canonical execution artifacts
-│   ├── notes/                 # Optional
-│   ├── research/              # Optional
-│   ├── assets/                # Optional
-│   ├── repos/                 # Git repos (optional)
-│   ├── designs/               # Optional
-│   ├── marketing/             # Optional
-│   ├── finance/               # Optional
-│   └── admin/                 # Optional
-├── 2-areas/
-│   └── hq/                    # HQ-internal documents and templates
-├── 3-resources/
-├── 4-archive/
+<vault-root>/
+├── system/                       # tracked — shared conventions and templates
+│   ├── conventions/
+│   └── templates/                #   prd / plan / project templates
+├── areas/                        # per-person content
+│   └── <area>/                   # a business area or domain
+│       ├── <project>/            # project: directly under an area …
+│       │   ├── README.md         # Project home note
+│       │   ├── AGENTS.md         # Durable worker context (PM-curated)
+│       │   ├── ops/
+│       │   │   ├── plans/        # Parent initiative plans
+│       │   │   └── prds/         # Canonical execution artifacts
+│       │   ├── notes/            # Optional
+│       │   ├── research/         # Optional
+│       │   ├── assets/           # Optional
+│       │   ├── repos/            # Git repos (optional)
+│       │   ├── designs/          # Optional
+│       │   ├── marketing/        # Optional
+│       │   ├── finance/          # Optional
+│       │   └── admin/            # Optional
+│       └── <intermediate>/       # … or nested under an intermediate layer
+│           └── <project>/        #   (e.g. services/<svc>/projects/<project>/)
+│               └── ops/prds/     #   project root is wherever ops/ lives
 └── README.md
 ```
 
 All file and folder names follow `hq-vault-naming` (lowercase kebab-case, exceptions for `README.md` and `AGENTS.md`).
 
+### What Is a Project
+
+**A project is any directory that contains an `ops/prds/` folder.** That folder —
+not a fixed path prefix — is the canonical marker.
+
+- **PRD discovery** uses a recursive marker glob: `areas/**/ops/prds/*.md`.
+- **Project root is derived dynamically** from each PRD's location: it is the
+  directory that contains the PRD's `ops/` folder (i.e. `<prd-path>/../../`).
+  Never assume a fixed depth such as `areas/<area>/<project>/`.
+- All path-relative fields (`working_path`, dispatch `--add-dir`) resolve against
+  this dynamically-derived project root, so they work at any depth.
+- **Scan guardrail**: scope discovery to `areas/` and prune repo/code dirs — drop
+  any PRD path that lies **under a repo root** (a directory that contains a `.git`
+  folder) — so `**` does not descend into codebases and false-match a stray
+  `ops/prds/`. Note: a bare `find ... -name .git -prune` prunes only the `.git`
+  directory, not its sibling subtrees, so it does not suffice. Compute repo roots
+  first, then exclude:
+
+  ```
+  # 1. repo roots = dirs containing a .git
+  repos=$(find areas -type d -name .git -prune | sed 's#/\.git$##')
+  # 2. candidate PRDs, minus anything under a repo root
+  find areas -path '*/ops/prds/*.md' -print | while read -r f; do
+    skip=0; for r in $repos; do case "$f" in "$r"/*) skip=1;; esac; done
+    [ "$skip" -eq 0 ] && echo "$f"
+  done
+  ```
+
 ## Three-Layer Memory Model
 
-1. **Parent plan** (`1-projects/<project>/ops/plans/<initiative>.md`) — Planning memory. Objective, outcome level, scope, phases, linked PRDs, revisions.
-2. **AGENTS.md** (`1-projects/<project>/AGENTS.md`) — Worker-facing durable execution context. Domain facts, stack decisions, conventions, constraints. Things specialists need repeatedly.
-3. **PRDs** (`1-projects/<project>/ops/prds/<prefix>-NNN-<slug>.md`) — Canonical execution artifacts. Each PRD is the spec AND the task state.
+Paths below are relative to the project root (the directory containing `ops/`),
+which is derived dynamically per the marker rule above.
+
+1. **Parent plan** (`<project-root>/ops/plans/<initiative>.md`) — Planning memory. Objective, outcome level, scope, phases, linked PRDs, revisions.
+2. **AGENTS.md** (`<project-root>/AGENTS.md`) — Worker-facing durable execution context. Domain facts, stack decisions, conventions, constraints. Things specialists need repeatedly.
+3. **PRDs** (`<project-root>/ops/prds/<prefix>-NNN-<slug>.md`) — Canonical execution artifacts. Each PRD is the spec AND the task state.
 
 When deciding where context belongs:
 
@@ -70,12 +112,14 @@ When deciding where context belongs:
 
 ## Project Scaffolding
 
-When creating a new project, always create:
+Pick the project's location under the appropriate `areas/<area>/...` path (directly
+under the area, or under an intermediate layer if the area uses one). Creating the
+`ops/prds/` folder is what makes the directory a discoverable project. Always create:
 
-- `1-projects/<project>/README.md`
-- `1-projects/<project>/AGENTS.md`
-- `1-projects/<project>/ops/plans/`
-- `1-projects/<project>/ops/prds/`
+- `<project-root>/README.md`
+- `<project-root>/AGENTS.md`
+- `<project-root>/ops/plans/`
+- `<project-root>/ops/prds/`
 
 Create optional folders only when the first artifact needs them:
 
@@ -88,8 +132,8 @@ For multi-PRD initiatives, you must create or update a parent plan before creati
 **Hard rule: no multi-PRD initiatives without a parent plan.**
 
 - If an active plan exists → update it and append revision history.
-- If no plan exists → create one at `1-projects/<project>/ops/plans/<initiative>.md`.
-- Use the template at `~/hq/2-areas/hq/templates/plan.md`.
+- If no plan exists → create one at `<project-root>/ops/plans/<initiative>.md`.
+- Use the template at `system/templates/plan.md`.
 - Use semantic names (e.g., `launch-website.md`, not `plan-001.md`).
 
 **Atomic tasks** (single PRD, no scope ambiguity) may skip the plan — the PRD then omits the `plan` field.
@@ -150,7 +194,7 @@ updated: 2026-04-02
 
 ### PRD Body Sections
 
-Use the template at `~/hq/2-areas/hq/templates/prd.md`. Key sections:
+Use the template at `system/templates/prd.md`. Key sections:
 
 - Objective, Context, Acceptance Criteria, Implementation Notes, Out of Scope
 - Work Log (concise: key decisions + outcomes, appended by worker)
@@ -161,7 +205,7 @@ Use the template at `~/hq/2-areas/hq/templates/prd.md`. Key sections:
 
 `<prefix>-NNN-<slug>.md` — e.g., `bk-001-landing-page-build.md`
 
-Use sequential numbering per project prefix. Glob `1-projects/<project>/ops/prds/<prefix>-*.md` to find the next number.
+Use sequential numbering per project prefix. Glob `<project-root>/ops/prds/<prefix>-*.md` to find the next number.
 
 ### Authoring Rules
 
@@ -190,7 +234,7 @@ Greenfield: create from scratch. Brownfield: curate actively — update entries 
 
 Within a project:
 
-1. Glob `1-projects/<project>/ops/prds/*.md`.
+1. Glob `<project-root>/ops/prds/*.md` (the project's own `ops/prds/` folder).
 2. Parse frontmatter for `id`, `status`, `depends_on`.
 3. Build `done_ids = { id for PRDs where status == "done" }`.
 4. A `queue` PRD is **ready** if `depends_on` is empty or all entries are in `done_ids`.
@@ -219,9 +263,9 @@ When a PRD returns `review` or `needs_attention`, the operator wants to change d
 ## Hard Rules
 
 - **No multi-PRD initiative without a parent plan.** Atomic single-PRD tasks may skip the plan; the PRD then omits the `plan` field.
-- **Scaffold before you build.** Verify project scaffolding exists before authoring plans or PRDs. PRDs at the project root or other wrong locations are not discoverable.
+- **Scaffold before you build.** Verify project scaffolding exists before authoring plans or PRDs. A directory is only a discoverable project once it has an `ops/prds/` folder; PRDs placed anywhere else are not discoverable.
 - **Create all initiative PRDs before dispatching any.** JIT PRD creation is not permitted for multi-PRD initiatives.
-- **The vault is the system of record.** Plans live in `ops/plans/`. PRDs live in `ops/prds/`. Anything outside the canonical paths is not discoverable by dispatch or resume logic.
+- **The vault is the system of record.** Plans live in `<project-root>/ops/plans/`. PRDs live in `<project-root>/ops/prds/`. Discovery is by the marker glob `areas/**/ops/prds/*.md`; anything outside a project's `ops/` tree is not discoverable by dispatch or resume logic.
 - **One agent, one scope per PRD.** Split anything broader.
 - **`working_path` must point at a directory that exists or can be scaffolded on demand.**
 - **Update the parent plan before creating or modifying PRDs during replanning.**

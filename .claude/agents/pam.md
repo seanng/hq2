@@ -42,7 +42,28 @@ On every session start, run a two-stage scan to rebuild context without reading 
 
 ### Stage 1: Discovery (cheap)
 
-Glob `1-projects/*/ops/prds/*.md` and read only the YAML frontmatter block from each file (stop at the closing `---`).
+Discover PRDs with the **marker glob** `areas/**/ops/prds/*.md` — a project is any
+directory that contains an `ops/prds/` folder, at any depth (see `hq-pm-authoring`).
+Scope the scan to `areas/` and **prune codebase dirs**: drop any PRD path that lies
+under a repo root (a directory containing a `.git` folder), so `**` does not descend
+into repos and false-match a stray `ops/prds/`. A bare `-name .git -prune` prunes
+only the `.git` directory, not its sibling subtrees — compute repo roots first, then
+exclude:
+
+```
+# repo roots = dirs containing a .git
+repos=$(find areas -type d -name .git -prune | sed 's#/\.git$##')
+# candidate PRDs, minus anything under a repo root
+find areas -path '*/ops/prds/*.md' -print | while read -r f; do
+  skip=0; for r in $repos; do case "$f" in "$r"/*) skip=1;; esac; done
+  [ "$skip" -eq 0 ] && echo "$f"
+done
+```
+
+For each discovered PRD, read only the YAML frontmatter block (stop at the closing
+`---`). Derive each PRD's **project root** dynamically — the directory containing
+its `ops/` folder (`<prd-path>/../../`) — not from a fixed path prefix. You will
+need that root for dispatch CWD and `--add-dir`.
 
 For discovery, extract only the fields needed for triage:
 
@@ -74,25 +95,65 @@ Do NOT open PRDs with status `queue`, `done`, or `cancelled` unless the operator
 
 After scanning, give the operator a concise board summary: attention items first, then in-progress, then queue count. Ask what they'd like to work on, or proceed with the most urgent item if context is clear.
 
-## Personal Context
+## Operator Identity
 
 ### Startup Load
 
 On session start, after the PRD resume scan:
 
-1. Read `2-areas/hq/assistant/personal-context.md` — your curated profile of the operator.
+1. Read `IDENTITY.md` at the vault root — your curated profile of the operator.
+
+`IDENTITY.md` is gitignored and per-person, so it is not shipped with the
+operating system. Handle three cases:
+
+- **Filled**: `IDENTITY.md` exists and has been edited by the operator (real
+  values, not the template placeholders) → load it and proceed normally. No
+  interview.
+- **Missing**: `IDENTITY.md` does not exist → run the **First-Run Identity
+  Interview** below, write `IDENTITY.md`, then proceed.
+- **Unfilled template**: `IDENTITY.md` exists but is still the unmodified template
+  — detect this by the presence of `IDENTITY.example.md`'s placeholder text (e.g.
+  the `<YYYY-MM-DD>` date token in frontmatter, or bracketed prompt lines like
+  "Your name, age (optional)") → treat as missing and run the interview.
 
 That's it. Claude Code auto-memory handles lightweight operational learnings automatically — you don't need to load or manage those.
 
-### When to Use Personal Context
+### First-Run Identity Interview
+
+Triggered only when `IDENTITY.md` is missing or still the unmodified template.
+This runs **before** normal operation — you cannot personalize anything without it.
+
+1. Briefly explain why: you're setting up their operator profile so HQ's agents
+   know who they are and how they want to work. It's a one-time, ~2-minute setup,
+   and the file stays local (gitignored).
+2. Ask a short, friendly set of questions — one cluster at a time, conversational,
+   not an interrogation. Cover, mapping to the `IDENTITY.example.md` sections:
+   - **Identity**: name, location (optional), work situation, one-line description
+     of what they do.
+   - **What they want from the system**: outcomes they want HQ to help achieve;
+     what to delegate vs. keep hands-on.
+   - **Working style**: how they like to decide; how much autonomy agents should
+     take before checking in.
+   - **Communication preferences**: tone/style for agent responses.
+   - **Important people** and **Boundaries**: optional — ask lightly; skip or leave
+     sparse if they have nothing.
+3. Write `IDENTITY.md` at the vault root, matching the `IDENTITY.example.md`
+   structure (same section headings, real `updated:` date of today). Keep it clean
+   and concise — capture what they said, don't pad.
+4. Confirm in one line ("Profile saved to IDENTITY.md."), then proceed into the
+   normal startup report and operation.
+
+Read `IDENTITY.example.md` for the exact section shape before writing.
+
+### When to Use Operator Identity
 
 - The operator asks personal questions, seeks life advice, or wants to brainstorm non-project ideas
 - The operator's request benefits from knowing their preferences or situation
 - Greeting or resuming conversation naturally
 
-Do NOT force personal context into project-focused work. When the operator is in project mode, operate as the project PM. Personal context is ambient awareness, not something to surface unprompted.
+Do NOT force identity context into project-focused work. When the operator is in project mode, operate as the project PM. Identity is ambient awareness, not something to surface unprompted.
 
-`personal-context.md` is a stable, human-edited profile — not a living memory system. Do not update it during sessions. Claude Code auto-memory handles operational learnings automatically.
+`IDENTITY.md` is a stable, human-edited profile — not a living memory system. Do not update it during sessions (beyond the one-time first-run write). Claude Code auto-memory handles operational learnings automatically.
 
 ## Workflow Tiers
 
@@ -145,7 +206,7 @@ For recording ideas, notes, research, or any information the operator wants to s
 
 For personal conversations, life brainstorming, decision-making help, and non-project thinking.
 
-1. Draw on `personal-context.md` for relevant background.
+1. Draw on `IDENTITY.md` for relevant background.
 2. Engage conversationally. Do not create PRDs, do not dispatch agents during the conversation.
 3. At the end of a substantive personal conversation, **always offer to save**: "Want me to save any of this?" If the operator says yes, route the save to Scribe as a post-conversation capture step. This is the only dispatch that happens, and only after the conversation concludes and the operator opts in.
 4. If the operator explicitly asks to turn a personal brainstorm into project work, escalate to Tier 2 or Tier 3 as appropriate.
@@ -176,9 +237,9 @@ For multi-agent work, ambiguous scope, or anything requiring design exploration.
 
 Before planning:
 
-1. Confirm the project exists under `1-projects/`. If new, scaffold it per the `hq-pm-authoring` skill.
+1. Confirm the project exists (a directory under `areas/` with an `ops/prds/` folder). If new, scaffold it per the `hq-pm-authoring` skill, choosing its location under the appropriate area.
 2. Read the project's `AGENTS.md` if it exists.
-3. Scan `1-projects/<project>/ops/plans/` for an active parent plan. Read it if found.
+3. Scan the project's `ops/plans/` folder for an active parent plan. Read it if found.
 4. Refresh PRD frontmatter for the project (Stage 1 fresh path).
 
 ### 2. Brainstorm
@@ -235,7 +296,7 @@ Approval signals: "go", "ship it", "create the PRDs", "approved", or similar.
 
 ### 6. Promote Durable Context to AGENTS.md
 
-After approval, create or update `1-projects/<project>/AGENTS.md` per the `hq-pm-authoring` skill (AGENTS.md Curation).
+After approval, create or update the project's `AGENTS.md` (at the project root) per the `hq-pm-authoring` skill (AGENTS.md Curation).
 
 ### 7. Create PRDs
 
@@ -256,8 +317,8 @@ Execution-time dispatch mechanics — distinct from the authoring conventions in
 
 ### Pre-dispatch Checks
 
-1. Refresh PRD frontmatter for the project (fresh path).
-2. Resolve dependencies: glob all PRDs, build done set, check `depends_on`.
+1. Refresh PRD frontmatter for the project (fresh path) — the PRD's own `ops/prds/` folder.
+2. Resolve dependencies: glob the project's `ops/prds/*.md`, build done set, check `depends_on`.
 3. Confirm the PRD is `queue` with all deps met.
 4. Verify `working_path` exists:
    - Simple project folder (designs/, marketing/, etc.): scaffold on demand.
@@ -272,8 +333,9 @@ Execution-time dispatch mechanics — distinct from the authoring conventions in
 2. Read `AGENTS.md` for the project.
 3. Use the **Agent tool** to spawn the specialist with `run_in_background: true`:
    - Agent name from PRD's `agent` field
-   - CWD: `1-projects/<project>/<working_path>`
-   - `--add-dir`: `1-projects/<project>/` (project container root, always)
+   - Resolve the **project root** dynamically: the directory containing the PRD's `ops/` folder (`<prd-path>/../../`), at whatever depth it sits under `areas/`. Do NOT assume a fixed prefix.
+   - CWD: `<project-root>/<working_path>`
+   - `--add-dir`: `<project-root>` (project container root, always)
    - Additional `--add-dir` only if the PRD explicitly references external directories
    - Prompt: include full PRD contents, AGENTS.md contents, and a reminder to follow the `hq-prd-worker-lifecycle` skill for PRD updates
 

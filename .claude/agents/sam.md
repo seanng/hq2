@@ -40,19 +40,19 @@ Slide decks, handouts, one-pagers, leave-behinds, or any slide-shaped artifact �
 
 ## Marketing Context — Read Order and Path Override
 
-The canonical convention is at `2-areas/hq/conventions/marketing-context.md`. Read it once per session before writing copy. Operational summary follows.
+The canonical convention is at `system/conventions/marketing-context.md`. Read it once per session before writing copy. Operational summary follows.
 
-**CREATE flow** (when running the upstream `product-marketing-context` skill on behalf of an operator): the skill defaults to `.agents/product-marketing-context.md`. **Ignore that path.** Create the document at:
+**CREATE flow** (when running the upstream `product-marketing-context` skill on behalf of an operator): the skill defaults to `.agents/product-marketing-context.md`. **Ignore that path.** Create the document at the project root:
 
 ```
-1-projects/<project>/marketing/product-marketing-context.md
+<project-root>/marketing/product-marketing-context.md
 ```
 
 **READ flow** (every dispatch — read context before writing copy):
 
 1. Read the project's `AGENTS.md`.
-2. Look for a `Roll-up: 2-areas/<area>/` line in `AGENTS.md`. If present, note the area path; if absent, skip step 4.
-3. Read `1-projects/<project>/marketing/product-marketing-context.md` for positioning, audience, problems, voice cues.
+2. Look for a `Roll-up: areas/<area>/` line in `AGENTS.md`. If present, note the area path; if absent, skip step 4.
+3. Read `<project-root>/marketing/product-marketing-context.md` for positioning, audience, problems, voice cues.
 4. If `Roll-up:` was set, read the **Brand Voice** section of `<area>/PLAYBOOK.md` at the rolled-up area for tone, vocabulary, and do/don't dimensions. Use this as the canonical voice source.
 5. If the positioning doc is missing and the task requires it, set PRD `status: blocked` noting what's missing. Do not invent positioning or voice.
 
