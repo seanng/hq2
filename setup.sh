@@ -668,12 +668,17 @@ except Exception:
     fi
   fi
 
-  # --- Suggest the shell alias for invoking Pam ------------------------------
-  if ! grep -q "alias pam=" "$SHELL_RC" 2>/dev/null; then
-    log "  Suggested: add this alias to $SHELL_RC for quick access to Pam:"
-    log "    ${C_DIM}alias pam='claude --dangerously-skip-permissions --agent pam'${C_RESET}"
-  else
+  # --- Add the shell alias for invoking Pam ----------------------------------
+  if grep -q "alias pam=" "$SHELL_RC" 2>/dev/null; then
     skip "pam alias already present in $SHELL_RC"
+  elif [ "$DRY_RUN" = "1" ]; then
+    dry_note "append pam alias to $SHELL_RC"
+  else
+    {
+      printf '\n%s\n' "# HQ setup: Pam alias"
+      printf "%s\n" "alias pam='claude --dangerously-skip-permissions --agent pam'"
+    } >> "$SHELL_RC"
+    ok "pam alias added to $SHELL_RC (restart shell or 'source' it to use 'pam')"
   fi
 fi
 
@@ -740,6 +745,13 @@ elif tavily_in_rc; then
 else
   printf "  ${C_RED}FAIL${C_RESET} %-22s — set TAVILY_API_KEY in $SHELL_RC\n" "TAVILY_API_KEY"
   VERIFY_FAILED=1
+fi
+
+# pam alias — convenience command the final "Next" step tells the user to run.
+if grep -q "alias pam=" "$SHELL_RC" 2>/dev/null; then
+  printf "  ${C_GREEN}OK${C_RESET}   %-22s (in $SHELL_RC; restart shell or source it)\n" "pam alias"
+else
+  printf "  ${C_YELLOW}WARN${C_RESET} %-22s — not in $SHELL_RC; run 'claude --agent pam' directly\n" "pam alias"
 fi
 
 # Bundled OAuth client — shipped out-of-band (git-ignored), so a fresh clone may
