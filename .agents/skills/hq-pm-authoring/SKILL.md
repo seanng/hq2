@@ -214,6 +214,7 @@ Use sequential numbering per project prefix. Glob `<project-root>/ops/prds/<pref
 - Dependencies must be explicit in `depends_on`.
 - `working_path` must be set to the most specific directory for the work, and it must be a directory that exists or can be scaffolded on demand (`designs/`, `marketing/`, etc.). Do not author PRDs that dispatch into missing repo CWDs — author a prior PRD for the scaffolding and use `depends_on`.
 - Review mode must be explicit on every PRD.
+- **`ops/prds/` contains only PRD files.** No deliverables, artifacts, or other files in this directory.
 - Create the **complete PRD set** for an initiative before dispatching any. All PRDs must exist so the operator can see the full shape of work and dependencies are trackable.
 
 ## AGENTS.md Curation
