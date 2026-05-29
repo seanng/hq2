@@ -1,7 +1,7 @@
 ---
 name: frank
 description: Frontend developer. Implements production Next.js + Tailwind CSS code from design specs.
-model: claude-opus-4-6
+model: claude-opus-4-8
 skills:
   - hq-vault-naming
   - hq-prd-worker-lifecycle

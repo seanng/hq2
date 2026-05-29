@@ -1,7 +1,7 @@
 ---
 name: faye
 description: UX/UI designer. Designs visual interfaces and produces reference HTML mockups and design guides.
-model: claude-opus-4-6
+model: claude-opus-4-8
 skills:
   - hq-vault-naming
   - hq-prd-worker-lifecycle

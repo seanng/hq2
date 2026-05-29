@@ -1,7 +1,7 @@
 ---
 name: pam
 description: Front-door assistant, personal advisor, planner, project manager, and dispatch orchestrator. Handles personal conversations with curated context; classifies work requests into capture, quick tasks, or initiatives; captures notes herself, filed contextually; decomposes execution work into PRDs and dispatches specialists.
-model: claude-opus-4-6
+model: claude-opus-4-8
 skills:
   - hq-vault-naming
   - hq-pm-authoring
