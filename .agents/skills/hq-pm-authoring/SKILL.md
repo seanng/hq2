@@ -7,7 +7,7 @@ description: Shared HQ project-management authoring conventions for parent plans
 
 This skill defines the standard authoring-side conventions for HQ project management. Any agent acting as a planner / PM for the vault uses these conventions to keep parent plans, PRDs, AGENTS.md files, and project scaffolding consistent across the system.
 
-The matched-pair sibling skill `hq-prd-worker-lifecycle` covers the execution side (how a worker updates a PRD as they run it). Use this skill when you are *writing* the artifacts; use that skill when you are *executing* one.
+The matched-pair sibling skill `hq-prd-worker-lifecycle` covers the execution side (how a worker updates a PRD as they run it). Use this skill when you are _writing_ the artifacts; use that skill when you are _executing_ one.
 
 ## Scope
 
@@ -206,6 +206,15 @@ Use the template at `system/templates/prd.md`. Key sections:
 `<prefix>-NNN-<slug>.md` — e.g., `bk-001-landing-page-build.md`
 
 Use sequential numbering per project prefix. Glob `<project-root>/ops/prds/<prefix>-*.md` to find the next number.
+
+### Cross-References (Obsidian Wikilinks)
+
+PRDs, parent plans and notes are read in Obsidian, so in-body references must be clickable wikilinks — not plain text or relative Markdown paths.
+
+- Reference other vault notes with `[[note-name]]` (or `[[note-name|display text]]`). Obsidian resolves by note name regardless of folder, and tracks renames automatically.
+  - Another PRD: `[[hqd-004-cloud-api|hqd-004]]` — link the full filename, alias to the short id for readability.
+- **Frontmatter stays plain.** `depends_on`, `plan`, `id`, and all other YAML fields are parsed by dispatch/resume tooling — never wikilink them.
+- See the `obsidian-markdown` skill for full wikilink, embed, and callout syntax.
 
 ### Authoring Rules
 

@@ -10,11 +10,13 @@ This skill defines the standard worker-side lifecycle for HQ PRD execution. Pam 
 ## Scope
 
 Use this skill when all of the following are true:
+
 - You were dispatched against a specific PRD.
 - The dispatch prompt includes the PRD path.
 - You are responsible for executing the work, not planning or triaging the initiative.
 
 Do not use this skill to:
+
 - Create PRDs.
 - Replan initiatives.
 - Edit `AGENTS.md`.
@@ -32,6 +34,7 @@ Do not use this skill to:
 ## When To Update The PRD
 
 Update the assigned PRD in these situations:
+
 - When you complete meaningful acceptance criteria.
 - When you pause for human review or feedback.
 - When you discover a material constraint, tradeoff, or deviation worth preserving.
@@ -41,6 +44,8 @@ Update the assigned PRD in these situations:
 Do not spam the PRD with low-signal implementation notes.
 
 ## Section Rules
+
+PRDs are read in Obsidian. Whenever you reference another vault note — a PRD, a research doc, a deliverable, a handoff — in Work Log, Result, or Handoff / Next Action, write it as a clickable wikilink: `[[note-name]]` or `[[note-name|display]]` (e.g. `[[handoff-mvp-architecture]]`, `[[hqd-004-cloud-api|hqd-004]]`). Use `[text](url)` only for external URLs. Never wikilink frontmatter fields. See the `obsidian-markdown` skill for syntax.
 
 ### Acceptance Criteria
 
@@ -55,6 +60,7 @@ Do not spam the PRD with low-signal implementation notes.
 ### Work Log
 
 Append concise entries covering:
+
 - Important decisions.
 - Notable implementation or research outcomes.
 - Deviations from the original plan that matter for future readers.
@@ -65,6 +71,7 @@ Do not turn `Work Log` into a command transcript.
 ### Result
 
 Use `Result` when finalizing work. Include:
+
 - Summary: what you delivered.
 - Files Modified: changed files or artifact paths.
 - Discoveries: anything future work should know.
@@ -74,6 +81,7 @@ If the task is paused for review rather than finalized, `Result` may remain part
 ### Handoff / Next Action
 
 Write this section when:
+
 - The operator needs to review something.
 - Another agent will continue the work.
 - There is follow-up context worth preserving.
@@ -104,6 +112,7 @@ In all cases above, also update `updated` to today's date.
 ## Completion Checklist
 
 When finishing or pausing:
+
 1. Check off completed acceptance criteria.
 2. Append concise key decisions and outcomes to `Work Log`.
 3. Write or update `Result` when finalizing.
@@ -114,10 +123,20 @@ When finishing or pausing:
 ## Failure Handling
 
 For minor issues:
+
 - Make a reasonable choice.
 - Document the choice in `Work Log` or `Result`.
 
 For major issues:
+
 - Explain the blocker clearly in `Work Log`.
 - Add the needed action or recommendation in `Handoff / Next Action`.
 - Set `status: needs_attention`.
+
+### Missing Tool Authentication / Brokered Tools
+
+When a required tool or brokered capability reports not-authenticated or unavailable (for example, Tavily web research returns an auth error, or a CLI reports "not authenticated"):
+
+- Do **not** silently fall back to a lesser substitute when the substitution materially changes the quality, coverage, or trustworthiness of the deliverable.
+- Treat it as a hard stop: set `status: needs_attention` and, in `Handoff / Next Action`, name the **exact command the operator must run** to fix it, and state plainly that it requires the human operator (the agent cannot self-authenticate).
+- A substitute is only acceptable when it genuinely suffices for the PRD's scope (e.g. `WebSearch` is adequate for a given research task). Even then, you must record in `Work Log` that the preferred tool was unavailable, which substitute you used, and any quality impact — so Pam and the operator can decide whether to re-run once the tool is authenticated.

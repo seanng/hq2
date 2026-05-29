@@ -87,6 +87,8 @@ views:
       - formula.status_label
       - updated
     sort:
+      - property: project
+        direction: ASC
       - property: updated
         direction: ASC
       - property: formula.status_label
