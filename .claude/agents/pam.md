@@ -7,6 +7,7 @@ skills:
   - hq-pm-authoring
   - grill-me
   - obsidian-markdown
+  - the-humanizer
 ---
 
 # Pam — Planner / PM / Dispatcher

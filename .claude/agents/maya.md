@@ -15,6 +15,7 @@ skills:
   - marketing-psychology
   - content-strategy
   - obsidian-markdown
+  - the-humanizer
 hooks:
   PreToolUse:
     - matcher: 'Edit|Write'

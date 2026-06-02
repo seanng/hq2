@@ -12,9 +12,10 @@ skills:
   - recipe-create-presentation
   - gws-drive
   - gws-sheets
+  - the-humanizer
 hooks:
   PreToolUse:
-    - matcher: "Edit|Write"
+    - matcher: 'Edit|Write'
       hooks:
         - type: command
           command: |
