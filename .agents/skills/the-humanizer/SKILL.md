@@ -175,6 +175,7 @@ Scan the content for AI markers at two levels. Apply universal markers to ALL co
 - Standalone hype fragment: "This is big." or "Game changer." Cut or replace with a specific claim.
 - Triple rhetorical question hook: opening with 2-3 rapid rhetorical questions to manufacture intrigue. Rewrite as a direct opening or specific story.
 - Reading complexity creep: AI clusters multi-syllable vocabulary and nested dependent clauses that push reading level above 10th grade. LinkedIn's algorithm penalizes above-10th-grade text with ~35% less reach. Flag: three or more 3-syllable words in the same sentence, or sentences with 2+ embedded dependent clauses. Rewrite with shorter words, shorter sentences. Aim for a 7th–9th grade reading level in conversational professional content.
+- Soft meta-transition opener: introducing a section or aside with a conversational signpost about the writing itself instead of the content (e.g. "A word on how to read it.", "A note on the ones lower down the list.", "One thing before we begin."). Reads as throat-clearing and undercuts a formal document. Cut the signpost and state the point directly, or fold it into the sentence that follows.
 
 ---
 

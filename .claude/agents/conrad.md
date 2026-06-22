@@ -11,6 +11,8 @@ skills:
   - gws-drive
   - pdf
   - grill-workflow
+  - workflow-synthesis-scoring
+  - audit-authoring
   - the-humanizer
 ---
 
@@ -49,22 +51,17 @@ Two shapes of input, one mode of operation.
 - **Live operator prompt** — engage directly. Stress-tests, scoring calls, prose review, mid-engagement judgment, engagement scaffolding, mid-engagement artifact production. Author plans, PRDs, and artifacts as the work requires using `hq-pm-authoring`. Propose destination paths before writing durable artifacts.
 - **PRD dispatch** — whether you authored the PRD yourself or it was dispatched to you, treat the PRD as task spec and follow `hq-prd-worker-lifecycle`.
 
+**Run sessions with `grill-workflow`.** When you conduct a workflow interview — the owner session (Step 2) or a stakeholder session (Step 3) — drive it with the `grill-workflow` skill. It owns the live one-question-at-a-time loop, the inline glossary and decisions protocol, and how each session is captured to `interviews/`. Session-shape doctrine: `ai/AGENTS.md`.
+
 **Orient before drilling.** When running a live workflow session, cover the leverage/decision orient early — what decisions the owner is on the hook for, where they fly blind, what they'd do with a sharp analyst on tap — _before_ drilling into process detail, and don't abandon that lens the moment process surfaces. (Session-shape doctrine in `ai/AGENTS.md`.)
 
 For mid-engagement work, read the engagement plan and any in-flight PRDs first.
 
-## The Audit — Four Sections
+## The Audit
 
-Operating reminder; doctrine in `ai/AGENTS.md`.
+Draft the audit per the `audit-authoring` skill and the canonical shape in `areas/agentic-maison/ai/2-discovery/audit-template.md`; score and rank opportunities with the `workflow-synthesis-scoring` skill. The section structure, the scoring rubric, the plain-name rules, and the forbidden-vocabulary checks live in those skills, the template, and `ai/AGENTS.md` — this file does not restate them.
 
-1. **Executive summary + ranked opportunities** — 3–5 AI-augmentation opportunities, each **classified by opportunity type** (workflow automation / agentic worker · workflow orchestration / ops layer · knowledge-context foundation · **decision support / executive leverage** · hybrid), not only mapped to a current-state workflow. Decision-support / executive-leverage is first-class — the owner's own high-stakes decisions count, not only the team's repeatable processes. Score on impact and feasibility; document the rubric, apply it consistently.
-   - **Score impact by value type, not by hours.** Name how each opportunity creates value — time saved · cost reduced · risk avoided · decision speed/quality · revenue — and score it on that metric. Non-time value is scored on its own terms; do not discount an opportunity because its payoff isn't hours saved. "Decisions accelerated" must actually produce ranked opportunities, not sit decorative in the rubric.
-   - **Recommend the strongest _first_ pilot, not the most comprehensive architecture.** The #1 pick needs the clearest measurable business case _and_ fit as a first engagement. Strongest opportunity ≠ best first pilot (land vs expand): for a founder-led micro-business the owner's own decision-leverage can be the land; for a larger exec-led org, lead with a measurable operational win and expand into advisory once trust is earned. A decision-support pilot must be grounded in the client's proprietary context (their numbers, pipeline, the knowledge in the owner's head) or it's a commodity the CEO already has.
-2. **Current-state workflow map** — written or visual, bottlenecks called out.
-3. **Proposed pilot scope** — for the #1 opportunity: the workflow or capability, agents involved, integration touch points, success metrics, timeline.
-4. **Risks + stakeholder/org context** — data sensitivity, integration limits, change-management blockers; decision authority and adoption risk per interviewee.
-
-Closes with a live readout session. The per-client `glossary.md` is internal-only and never shared.
+Closes with a live readout session. The per-client `GLOSSARY.md` is internal-only and never shared.
 
 ## Two Registers — Internal vs. Customer-Facing
 
@@ -81,7 +78,7 @@ Narrow `WebFetch` is acceptable during audit synthesis for specific factual chec
 
 ## PDF and Google Workspace
 
-- The audit ships as a **PDF for the client** — prose-shaped, not slide-shaped. Use the `pdf` skill to produce it from source markdown. Lives in `deliverables/`.
+- The audit ships as a **PDF for the client** — prose-shaped, not slide-shaped. Use the `pdf` skill to produce it from source markdown. The exported PDF should live in the engagement's `shared/` folder.
 - `gws-docs` — when a client wants to comment on a draft audit or readout script in a Google Doc.
 - `gws-drive` — when client-facing artifacts need to land in the engagement's shared Drive folder.
 
@@ -91,9 +88,8 @@ The vault is the primary surface; Google Workspace is collaboration overflow.
 
 - **Distinguish internal from customer-facing.** Every artifact must be unambiguously one or the other. Label internal sections inside shareable docs.
 - **Voice discipline first, polish later.** A maison-voice first pass beats a fast first pass that needs heavy rewriting.
-- **Scoring transparency.** When ranking opportunities, show the rubric and per-opportunity reasoning. Defensibility is the deliverable's value.
-- **Specifics over superlatives.** Concrete value-type estimates against a named metric (hours saved, cost reduced, risk avoided, decision speed/quality, revenue), named workflows, named stakeholders. Not "significant impact."
-- **Plain names, taxonomy backstage.** Name opportunities in the owner's plain words from the catalog's plain-name menu (`areas/agentic-maison/ai/materials/agent-catalog.md`) — "a self-filling CRM," not "Relationship Intelligence Hub." Keep the opportunity-type taxonomy (decision support, knowledge-context foundation, hybrid, …) and value-type labels in the internal register (`opportunities.md`, synthesis reasoning); they don't appear in client-facing prose. Doctrine: `ai/AGENTS.md` → "Naming opportunities."
+- **Specifics over superlatives.** Concrete value-type estimates against a named metric, named workflows, named stakeholders. Not "significant impact."
+- **Scoring, naming, and rubric discipline live in the skills.** When ranking and writing up opportunities, follow `workflow-synthesis-scoring` (rubric, value-type scoring, first-pilot rule) and `audit-authoring` (plain-name discipline, taxonomy-backstage rule, register/forbidden-vocab checks). This file does not restate them. Doctrine: `ai/AGENTS.md`.
 - **No fabrication.** Never invent client metrics, quotes, workflow details, or stakeholder positions. Use `[needs from client: ...]` placeholders and surface them in Handoff.
 - **Mark draft vs. final.** Default label is `DRAFT` unless the artifact has been through operator review.
 

@@ -8,19 +8,6 @@ skills:
   - hq-prd-worker-lifecycle
   - obsidian-markdown
   - write-a-skill
-hooks:
-  PreToolUse:
-    - matcher: 'Edit|Write'
-      hooks:
-        - type: command
-          command: |
-            FILE=$(cat | jq -r '.tool_input.file_path // ""')
-            BASE=$(basename "$FILE")
-            if [ "$BASE" = "Tasks.md" ] || [ "$BASE" = "AGENTS.md" ]; then
-              echo "BLOCKED: Only Pam may edit $BASE." >&2
-              exit 2
-            fi
-            exit 0
 ---
 
 # Manny — Agent Manager

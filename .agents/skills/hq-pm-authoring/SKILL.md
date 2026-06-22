@@ -28,15 +28,9 @@ Do not use this skill for:
 
 ## Vault Layout
 
-HQ is an Obsidian vault. Per-person content lives under `areas/` (one folder per
-business area or domain), with the operating system (`.claude/`, `.agents/`,
-`system/`) tracked separately at the vault root. The PM authoring surface lives
-inside `areas/`.
+HQ is an Obsidian vault. Per-person content lives under `areas/` (one folder per business area or domain), with the operating system (`.claude/`, `.agents/`, `system/`) tracked separately at the vault root. The PM authoring surface lives inside `areas/`.
 
-Areas have **heterogeneous shapes**: some go area → projects directly, some
-introduce intermediate layers (e.g. `services/<svc>/projects/<project>/`), and
-some have no projects at all. Project structure is therefore **not encoded in a
-fixed path depth**.
+Areas have **heterogeneous shapes**: some go area → projects directly, some introduce intermediate layers (e.g. `services/<svc>/projects/<project>/`), and some have no projects at all. Project structure is therefore **not encoded in a fixed path depth**.
 
 ```
 <vault-root>/
@@ -69,21 +63,12 @@ All file and folder names follow `hq-vault-naming` (lowercase kebab-case, except
 
 ### What Is a Project
 
-**A project is any directory that contains an `ops/prds/` folder.** That folder —
-not a fixed path prefix — is the canonical marker.
+**A project is any directory that contains an `ops/prds/` folder.** That folder — not a fixed path prefix — is the canonical marker.
 
 - **PRD discovery** uses a recursive marker glob: `areas/**/ops/prds/*.md`.
-- **Project root is derived dynamically** from each PRD's location: it is the
-  directory that contains the PRD's `ops/` folder (i.e. `<prd-path>/../../`).
-  Never assume a fixed depth such as `areas/<area>/<project>/`.
-- All path-relative fields (`working_path`, dispatch `--add-dir`) resolve against
-  this dynamically-derived project root, so they work at any depth.
-- **Scan guardrail**: scope discovery to `areas/` and prune repo/code dirs — drop
-  any PRD path that lies **under a repo root** (a directory that contains a `.git`
-  folder) — so `**` does not descend into codebases and false-match a stray
-  `ops/prds/`. Note: a bare `find ... -name .git -prune` prunes only the `.git`
-  directory, not its sibling subtrees, so it does not suffice. Compute repo roots
-  first, then exclude:
+- **Project root is derived dynamically** from each PRD's location: it is the directory that contains the PRD's `ops/` folder (i.e. `<prd-path>/../../`). Never assume a fixed depth such as `areas/<area>/<project>/`.
+- All path-relative fields (`working_path`, dispatch `--add-dir`) resolve against this dynamically-derived project root, so they work at any depth.
+- **Scan guardrail**: scope discovery to `areas/` and prune repo/code dirs — drop any PRD path that lies **under a repo root** (a directory that contains a `.git` folder) — so `**` does not descend into codebases and false-match a stray `ops/prds/`. Note: a bare `find ... -name .git -prune` prunes only the `.git` directory, not its sibling subtrees, so it does not suffice. Compute repo roots first, then exclude:
 
   ```
   # 1. repo roots = dirs containing a .git
@@ -97,8 +82,7 @@ not a fixed path prefix — is the canonical marker.
 
 ## Three-Layer Memory Model
 
-Paths below are relative to the project root (the directory containing `ops/`),
-which is derived dynamically per the marker rule above.
+Paths below are relative to the project root (the directory containing `ops/`), which is derived dynamically per the marker rule above.
 
 1. **Parent plan** (`<project-root>/ops/plans/<initiative>.md`) — Planning memory. Objective, outcome level, scope, phases, linked PRDs, revisions.
 2. **AGENTS.md** (`<project-root>/AGENTS.md`) — Worker-facing durable execution context. Domain facts, stack decisions, conventions, constraints. Things specialists need repeatedly.
@@ -112,9 +96,7 @@ When deciding where context belongs:
 
 ## Project Scaffolding
 
-Pick the project's location under the appropriate `areas/<area>/...` path (directly
-under the area, or under an intermediate layer if the area uses one). Creating the
-`ops/prds/` folder is what makes the directory a discoverable project. Always create:
+Pick the project's location under the appropriate `areas/<area>/...` path (directly under the area, or under an intermediate layer if the area uses one). Creating the `ops/prds/` folder is what makes the directory a discoverable project. Always create:
 
 - `<project-root>/README.md`
 - `<project-root>/AGENTS.md`
@@ -282,3 +264,4 @@ When a PRD returns `review` or `needs_attention`, the operator wants to change d
 - **AGENTS.md holds durable worker context only.** No planning history, no one-shot task notes.
 - **Distinguish included, excluded, and deferred / recommended-next work** in every substantive plan.
 - **Assume launch-ready outcome unless told otherwise.**
+- **Write prose as one logical line per paragraph.** Never hard-wrap to a column width — these artifacts render and edit in Obsidian, which soft-wraps.

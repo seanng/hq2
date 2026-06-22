@@ -37,6 +37,8 @@ views:
       - formula.status_label
       - updated
     sort:
+      - property: file.name
+        direction: DESC
       - property: formula.status_label
         direction: ASC
       - property: updated
