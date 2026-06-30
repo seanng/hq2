@@ -35,6 +35,23 @@ __pycache__/
 # Credentials and secrets never enter the tracked framework.
 .agents/auth/
 
+# ─── Private skills ───────────────────────────────────────────
+# Skills used only by a private (_private/) agent stay local, the
+# same way the agent does. The skill content lives in
+# .agents/skills/_private/, and its symlink in .claude/skills/ is
+# ignored per-name (that dir is otherwise whitelisted above).
+# To add a private skill: drop it in .agents/skills/_private/,
+# symlink it into .claude/skills/, and add the symlink name here.
+.agents/skills/_private/
+.claude/skills/dcf-valuation
+.claude/skills/comps-valuation
+.claude/skills/three-statement-model
+.claude/skills/equity-initiating-coverage
+.claude/skills/equity-screen
+.claude/skills/equity-thesis-tracker
+.claude/skills/portfolio-rebalance
+.claude/skills/financial-plan
+
 # ─── Per-person operator profile ──────────────────────────────
 # The real IDENTITY.md is written by Pam on first run and stays
 # local. Only IDENTITY.example.md (the template) is tracked.

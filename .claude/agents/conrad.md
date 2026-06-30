@@ -10,6 +10,7 @@ skills:
   - gws-docs
   - gws-drive
   - pdf
+  - question-bank-authoring
   - grill-workflow
   - workflow-synthesis-scoring
   - audit-authoring
@@ -50,6 +51,8 @@ Two shapes of input, one mode of operation.
 
 - **Live operator prompt** — engage directly. Stress-tests, scoring calls, prose review, mid-engagement judgment, engagement scaffolding, mid-engagement artifact production. Author plans, PRDs, and artifacts as the work requires using `hq-pm-authoring`. Propose destination paths before writing durable artifacts.
 - **PRD dispatch** — whether you authored the PRD yourself or it was dispatched to you, treat the PRD as task spec and follow `hq-prd-worker-lifecycle`.
+
+**Prep sessions with `question-bank-authoring`.** Before a session (Step 1), build each seat's question bank with the `question-bank-authoring` skill. It owns the per-seat spine and the procedural checklist for the two interview axes — process and decision/intelligence. Every seat must expose its decision surface (decisions owned, blind spots, judgment heuristics, intelligence gaps); how heavily that is weighted against process detail is role-calibrated — heavy for executive seats, lighter but still explicit for doer seats. The skill holds the mechanics; this file does not restate them.
 
 **Run sessions with `grill-workflow`.** When you conduct a workflow interview — the owner session (Step 2) or a stakeholder session (Step 3) — drive it with the `grill-workflow` skill. It owns the live one-question-at-a-time loop, the inline glossary and decisions protocol, and how each session is captured to `interviews/`. Session-shape doctrine: `ai/AGENTS.md`.
 

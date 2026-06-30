@@ -61,6 +61,10 @@ When the interviewee uses a term that conflicts with the existing language in `G
 
 When the interviewee uses vague or overloaded terms, propose a precise canonical term. "You're saying 'the team' — do you mean the operations pod or everyone on the engagement? Those are different groups."
 
+### Drill the decisions, not just the steps
+
+A workflow map tells you how the work moves; it does not tell you what the work is *for*. Every process exists to serve decisions someone is on the hook for — and those decisions are where the leverage usually hides. As you walk the steps, keep asking what the person at each step decides, and how well-informed that decision is. Probe: which calls do they own, which do they make on information that is not good enough, where do they go on feel, what do they find out too late, and what would they ask for if they had a sharp analyst on tap. Do this for every role, sized to the seat — a senior owner makes high-stakes judgment calls all day, but even a clerk owns micro-decisions (what to work first, when to escalate, how they know something is wrong). The process map will try to crowd these out: once the room is deep in mechanics, the decision questions get abandoned. Hold them. The step that takes the longest is not always the one that matters most; the decision made with the worst information often is.
+
 ### Discuss concrete scenarios
 
 When workflow relationships are being discussed, stress-test them with specific scenarios. Invent scenarios that probe edge cases — what happens on a Friday afternoon, what happens when the approver is on holiday, what happens when the invoice arrives before the PO — and force the interviewee to be precise about the boundaries between steps and roles.
@@ -86,5 +90,25 @@ Only offer to capture a Business Decision when all three are true:
 3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons
 
 If any of the three is missing, skip it. Use the format in [DECISIONS-FORMAT.md](./DECISIONS-FORMAT.md).
+
+## Before closing the session — live confirm pass
+
+While the interviewee is still in the room, do a short wrap before you end the call. Its job is to close the cheap gaps in person rather than punt them to an async follow-up. Quickly:
+
+- **Confirm the decisions you are unsure you got right** — "so the call on X is yours, and you make it weekly off the spreadsheet — did I get that right?"
+- **Pin the one or two numbers or facts that are cheap to ask now** — a quantity, a frequency, a threshold you left fuzzy.
+- **Surface any contradiction you noticed** while it can still be resolved live.
+
+Keep it to the handful of items that genuinely close in under a minute each. Anything heavier — a whole topic you did not reach, a number they would need to look up — is for the async follow-up, so you are not keeping the interviewee on the clock. The deeper reflection happens after, off the clock (next).
+
+## After the session — debrief pass
+
+Once the session ends, before you move on, run a short debrief while the conversation is fresh. This is a quality check that the decision lens was not crowded out by the process map, and it catches what to follow up on. For each session, answer:
+
+- **What decision did this person actually own?** Name the calls they are on the hook for — not the steps they run. If you cannot name one, the session stayed on process and the decision lens was missed.
+- **What intelligence gap did we surface?** Where do they decide under-informed, go on feel, find out too late, or wish they had a number or signal they cannot see today? Name it concretely.
+- **What blind spot remains unprobed?** What did the session not get to — a decision you suspect they own but did not confirm, a quantity you did not pin down, a contradiction left unresolved? This is the follow-up list.
+
+Capture the answers wherever the host system files session notes. If all three come back thin, that is the signal to schedule a follow-up or steer the next session harder onto the decisions the work serves.
 
 </supporting-info>

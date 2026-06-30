@@ -19,6 +19,7 @@ Step 4 of Discovery, **after all planned sessions are complete** and the `GLOSSA
 - `discovery/GLOSSARY.md` — domain terms (never quoted into the audit)
 - `discovery/workflows/*.md` — current-state notes (you may be writing these in Step 1)
 - `discovery/stakeholder-map.md` — decision authority + adoption posture
+- `discovery/decision-surface.md` — per-seat decision/intelligence map (decisions owned, blind spots, intelligence gaps). The decision-support / executive-leverage candidate pass **must read this before ranking**, so a decision-support opportunity surfaced in sessions is not lost between discovery and synthesis. Each row already names a value type and stakes band; carry that into Impact rather than re-deriving it.
 - `materials/agent-catalog.md` — archetypes (A1–A10) + V-series, for classification and the moat test
 
 Score from this written record (interview files + workflow artifacts), not from live impressions of the conversations. The deliberate read of the documented evidence, done once, is what removes recall and recency bias.

@@ -23,6 +23,24 @@ description: Create new agent skills with proper structure, progressive disclosu
    - Anything missing or unclear?
    - Should any section be more/less detailed?
 
+4. **Register the skill** — a skill in `.agents/skills/` is invisible to Claude
+   Code until it is symlinked into `.claude/skills/`. Claude only discovers
+   skills under `.claude/skills/`; it does **not** scan `.agents/skills/`. After
+   creating the skill directory, add the symlink and verify:
+
+   ```bash
+   ln -s "../../.agents/skills/<skill-name>" ".claude/skills/<skill-name>"
+   system/scripts/check-skill-symlinks.sh   # confirms the registry is consistent
+   ```
+
+   The symlink is relative and git-tracked, so it ships with the repo.
+
+   **Private skills** (used only by a private `_private/` agent like Finn): put
+   the content in `.agents/skills/_private/<skill-name>/`, symlink it into
+   `.claude/skills/<skill-name>`, and add that symlink name to `.gitignore`. The
+   skill works locally but never enters the shared repo. Run the registry check
+   the same way — it validates private skills too.
+
 ## Skill Structure
 
 ```

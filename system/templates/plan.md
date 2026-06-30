@@ -27,8 +27,8 @@
 1. ...
 
 ## Child PRDs
-| PRD | Title | Agent | Status | Notes |
-|-----|-------|-------|--------|-------|
+| PRD | Title | Agent | Notes |
+|-----|-------|-------|-------|
 
 ## Open Questions
 - ...
