@@ -64,7 +64,7 @@ No fit → `UNLISTED — candidate`, one-line why, flag to operator. Never force
 
 ## Outputs
 
-`discovery/opportunities.md` — the ranked, classified, scored set with reasoning, `[needs from client: ...]` gaps, and the killed list. It feeds the audit §1 table, §3 reasoning, and the Appendix derivation; the current-state map feeds §2. Keep backstage (not in the audit body): the type tag, archetype mapping, value type + metric, and adoption sub-factor. Backstage→client-axis mapping and the scorecard shape are in [REFERENCE.md](REFERENCE.md).
+`discovery/synthesis/opportunities.md` — the ranked, classified, scored set with reasoning, `[needs from client: ...]` gaps, and the killed list. It feeds the audit §1 table, §3 reasoning, and the Appendix derivation; the current-state map feeds §2. Keep backstage (not in the audit body): the type tag, archetype mapping, value type + metric, and adoption sub-factor. Backstage→client-axis mapping and the scorecard shape are in [REFERENCE.md](REFERENCE.md).
 
 ## Conventions
 

@@ -15,7 +15,7 @@ Step 5 of Discovery, after `workflow-synthesis-scoring` has produced a ranked, s
 
 ## Inputs (all internal — none ship; only the exported PDF does)
 
-- `discovery/opportunities.md` — ranked, scored set → §1 table, §3 pilot rationale, §4 opportunity reasoning
+- `discovery/synthesis/opportunities.md` — ranked, scored set → §1 table, §3 pilot rationale, §4 opportunity reasoning
 - `discovery/workflows/*.md` — current-state notes → §2
 - `discovery/stakeholder-map.md` — authority + adoption → §5 stakeholder roster (prose, not a table)
 - `discovery/GLOSSARY.md` — terminology only, to keep names/terms accurate; **never quoted or shipped**
@@ -48,13 +48,13 @@ Never invent a client number, quote, workflow detail, or stakeholder position. `
 
 ## DRAFT discipline and export
 
-Work the full **pre-ship checklist in the template** before shipping. DRAFT while drafting (frontmatter `status: DRAFT`, banner at top, draft marker in the footer); on FINAL (post operator review) flip the status, delete the banner and the draft footer marker, and drop `-DRAFT` from the filename. Render with `areas/agentic-maison/ai/2-discovery/render-audit.py <source.md>`, which writes the prose-shaped PDF to the engagement's `shared/` folder as `ai-opportunity-audit-<slug>-DRAFT.pdf` (drop `-DRAFT` once status is FINAL). Not `.docx`; not a separate `deliverables/` folder.
+Work the full **pre-ship checklist in the template** before shipping. DRAFT while drafting (frontmatter `status: DRAFT`, banner at top, draft marker in the footer); on FINAL (post operator review) flip the status and delete the banner and the draft footer marker. Render with `areas/agentic-maison/ai/2-discovery/render-audit.py <source.md>`, which writes the prose-shaped PDF to the engagement's `discovery/shared/` folder as `ai-opportunity-audit-<slug>.pdf` — the filename is **stable across DRAFT and FINAL**; draft state lives only in the footer marker and frontmatter, never the filename. Not `.docx`; not a separate `deliverables/` folder.
 
 `render-audit.py` produces a **branded cover page** from frontmatter (client name, the fixed label "AI Opportunities Audit Report", "Prepared on <date>"; brand palette paper-cream `#efe8d6`, ink `#14110b`, brass `#7a4d18`) and stamps a running **header** ("Agentic Maison" + report/client line) and a **page-number footer** onto every content page. The markdown body carries no title block, no H1, and no horizontal rules between sections; the cover and the running furniture are the renderer's job. Headings are unnumbered noun phrases (the opening method/coverage runs as an unlabeled preamble; the summary section is "Overview"); cross-references use section names, not numbers.
 
 ## Outputs
 
-- `discovery/audit.md` — the audit source markdown (internal working file).
-- `shared/ai-opportunity-audit-<slug>.pdf` — the exported client deliverable (the only artifact that ships).
+- `discovery/sources/audit.md` — the audit source markdown (internal working file).
+- `discovery/shared/ai-opportunity-audit-<slug>.pdf` — the exported client deliverable (the only artifact that ships).
 
 Closing the engagement: a live readout session and a case-study draft follow (see `ai/AGENTS.md`).

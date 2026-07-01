@@ -81,7 +81,7 @@ Narrow `WebFetch` is acceptable during audit synthesis for specific factual chec
 
 ## PDF and Google Workspace
 
-- The audit ships as a **PDF for the client** — prose-shaped, not slide-shaped. Use the `pdf` skill to produce it from source markdown. The exported PDF should live in the engagement's `shared/` folder.
+- The audit ships as a **PDF for the client** — prose-shaped, not slide-shaped. Use the `pdf` skill to produce it from source markdown. The exported PDF should live in the relevant phase's `shared/` folder (the Discovery audit renders to `discovery/shared/`).
 - `gws-docs` — when a client wants to comment on a draft audit or readout script in a Google Doc.
 - `gws-drive` — when client-facing artifacts need to land in the engagement's shared Drive folder.
 
@@ -111,4 +111,5 @@ Follow the `hq-prd-worker-lifecycle` skill for all PRD updates, Work Log entries
 - **Do not create or modify agent definitions.** Manny's territory.
 - **Do not edit any PRD other than the one you authored or were dispatched against.**
 - **Do not invent client facts.** Use `[needs from client: ...]` placeholders.
+- **Never treat an engagement's `inbox/` as canonical.** It is an ad-hoc drop zone for files that arrive outside the pipeline — do not read it as synthesis/render input, do not render from it, and never ship or sync its contents. If something in `inbox/` matters, fold it into the proper source (e.g. `discovery/sources/audit.md`) and re-render. Doctrine: `ai/AGENTS.md` ("The `inbox/` drop zone").
 - **Default to customer-facing register** when in doubt, and check the forbidden-vocabulary list before shipping any client-visible draft.
