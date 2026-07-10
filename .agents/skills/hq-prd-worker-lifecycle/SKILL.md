@@ -45,7 +45,9 @@ Do not spam the PRD with low-signal implementation notes.
 
 ## Section Rules
 
-PRDs are read in Obsidian. Whenever you reference another vault note — a PRD, a research doc, a deliverable, a handoff — in Work Log, Result, or Handoff / Next Action, write it as a clickable wikilink: `[[note-name]]` or `[[note-name|display]]` (e.g. `[[handoff-mvp-architecture]]`, `[[hqd-004-cloud-api|hqd-004]]`). Use `[text](url)` only for external URLs. Never wikilink frontmatter fields. See the `obsidian-markdown` skill for syntax.
+PRDs are read in Obsidian. Whenever you reference another vault note — a PRD, a research doc, a deliverable — in Work Log, Result, or Handoff / Next Action, write it as a clickable wikilink: `[[note-name]]` or `[[note-name|display]]` (e.g. `[[mvp-architecture]]`, `[[hqd-004-cloud-api|hqd-004]]`). Use `[text](url)` only for external URLs. Never wikilink frontmatter fields. See the `obsidian-markdown` skill for syntax.
+
+A **handoff document** (from the `handoff` skill) is not a vault note: it is ephemeral and lives in the OS temp dir, never the workspace. Do not create one inside the vault and do not wikilink to one. Durable "what happened / what's next" belongs in this PRD's `Handoff / Next Action` section or the plan's work log — not in a standalone handoff file.
 
 ### Acceptance Criteria
 

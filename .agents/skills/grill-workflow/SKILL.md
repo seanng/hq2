@@ -53,6 +53,21 @@ Create files lazily — only when you have something to write. If no `GLOSSARY.m
 
 ## During the session
 
+### Open with the mandate (owner and sponsor sessions)
+
+When the interviewee is the engagement's owner or sponsor — the person who commissioned the work, or whoever represents them — the first questions of the session elicit the **mandate**, before any process or seat probing: what made them commission this, where they believe the biggest opportunities or pain points are (sales? company knowledge? decision support?), and what would make the engagement a win. Capture the answer in their own words.
+
+**If the mandate was already captured upstream** (a registration form, a prior conversation, the engagement scaffold), don't re-elicit it cold — assert it back and sharpen it ("you wrote that X is the bottleneck — what does that look like in a normal week?"), then steer as usual. The elicitation is for when no mandate is on record; the steering rules below apply either way.
+
+The stated mandate becomes the session's steering thread: spend the majority of the session drilling into the named domains — apply the process and decision techniques below *inside* those domains, not to the person's generic day-to-day. A sponsor session that maps the sponsor's personal workflow while ignoring their stated priorities has missed the point of the seat.
+
+Two guardrails:
+
+- **The mandate is a hypothesis, not a script.** Assert→drill the diagnosis itself: "you say the opportunity is sales — what's the evidence it's sales and not fulfilment?" The owner's read on their own business is a claim to test; the correction is signal either way.
+- **Reserve a short sweep** near the end for leverage the sponsor didn't name, so the audit can still surprise them. Owner-steered is not owner-limited.
+
+**Proxy sessions:** when the interviewee represents the owner rather than being the owner (a deputy, a family member, a chief of staff), elicit *two* mandates — the owner's as relayed, and the proxy's own view — and flag any divergence between them. The divergence is itself a finding.
+
 ### Challenge against the glossary
 
 When the interviewee uses a term that conflicts with the existing language in `GLOSSARY.md`, call it out immediately. "Your glossary defines 'client' as the buyer's company, but you just used it to mean the individual signing the SOW — which is it?"
@@ -108,6 +123,7 @@ Once the session ends, before you move on, run a short debrief while the convers
 - **What decision did this person actually own?** Name the calls they are on the hook for — not the steps they run. If you cannot name one, the session stayed on process and the decision lens was missed.
 - **What intelligence gap did we surface?** Where do they decide under-informed, go on feel, find out too late, or wish they had a number or signal they cannot see today? Name it concretely.
 - **What blind spot remains unprobed?** What did the session not get to — a decision you suspect they own but did not confirm, a quantity you did not pin down, a contradiction left unresolved? This is the follow-up list.
+- **Did the session serve the mandate?** (owner/sponsor sessions only) Check the time went to the domains the sponsor named — and that the mandate itself was tested, not just obeyed. If the session drifted into generic workflow mapping of the sponsor's day-to-day, that is the headline follow-up.
 
 Capture the answers wherever the host system files session notes. If all three come back thin, that is the signal to schedule a follow-up or steer the next session harder onto the decisions the work serves.
 

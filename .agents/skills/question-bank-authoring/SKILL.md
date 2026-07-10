@@ -1,6 +1,6 @@
 ---
 name: question-bank-authoring
-description: Generate the pre-session question bank for an AI Practice Discovery workflow interview — build a per-seat spine of assert→drill questions from the client's source docs that probes two required, role-calibrated axes: the process axis (steps, handoffs, exceptions, time-sinks) and the decision/intelligence axis (which decisions the seat owns, where they decide under-informed, where they fly blind, what they would ask a sharp analyst on tap). Use during Step 1 of a Discovery engagement (Conrad), before the owner and stakeholder sessions. Triggers on "build the question bank", "prep the interview", "generate questions for <stakeholder>", "discovery prep".
+description: Generate the pre-session question bank for an AI Practice Discovery workflow interview — build a per-seat spine of assert→drill questions from the client's source docs that probes two required, role-calibrated axes: the process axis (steps, handoffs, exceptions, time-sinks) and the decision/intelligence axis (which decisions the seat owns, where they decide under-informed, where they fly blind, what they would ask a sharp analyst on tap). For the owner/sponsor seat, the bank opens with mandate elicitation (Axis 0) — where the sponsor believes the opportunity is — and is weighted toward their stated priorities. Use during Step 1 of a Discovery engagement (Conrad), before the owner and stakeholder sessions. Triggers on "build the question bank", "prep the interview", "generate questions for <stakeholder>", "discovery prep".
 ---
 
 # Question-Bank Authoring
@@ -17,7 +17,7 @@ Step 1 of Discovery, after the engagement is scaffolded and the client's source 
 
 ## The core mandate: two axes, both always present, weighted by seat
 
-Every question bank drills **two axes — and the decision/intelligence axis is never optional, for any seat.** This is the load-bearing rule of this skill. A bank that maps the process but never the decisions the process serves is incomplete and must not go to session.
+Every question bank drills **two axes — and the decision/intelligence axis is never optional, for any seat.** This is the load-bearing rule of this skill. A bank that maps the process but never the decisions the process serves is incomplete and must not go to session. For the **owner/sponsor seat** there is additionally a prior element — **Axis 0, the mandate** (below) — which opens the bank and steers how the two axes are weighted across domains.
 
 **The weighting is role-calibrated, not equal.** The wrong fix here is "give every seat equal process and decision coverage" — that over-drills doer seats on decisions they do not own and under-serves the process detail you actually need from them. The right rule:
 
@@ -30,6 +30,16 @@ Concretely:
 - **Operator / doer seats** (clerks, coordinators, schedulers) get **heavier Axis A** — their value to the audit is the honest process map and the time-sinks. But Axis B is still **explicit, not skipped**: even a doer owns micro-decisions ("which order do I work, when do I escalate, how do I know it's wrong"), holds undocumented judgment, and waits on intelligence that arrives late. Find that surface — lightly — and never let "they're just a doer" delete it.
 
 The failure this prevents is the documented one: the room drifts to process and the decision lens gets abandoned. The defense is structural — **the bank is not complete until Axis B is present and seat-appropriate for every seat,** not just the executives.
+
+### Axis 0 — Mandate (owner/sponsor seats only)
+
+For the seat that commissioned the engagement — the owner, or whoever represents them — the bank opens with **mandate elicitation**, before any Axis A/B branch: what made them commission this, where they believe the opportunity or pain is (sales? company knowledge? decision support?), and what a win looks like. Three rules:
+
+- **The mandate leads the sponsor bank.** Its opening section is mandate elicitation, marked "ask first; HOLD" — the same structural device the orient uses. Everything after it in the live session is steered by the answer.
+- **Named priorities re-weight the bank.** If the source docs, the engagement scaffold, or a prior conversation already name the sponsor's priority areas, the bank's largest share of drills must target those domains — Axis A and Axis B applied *inside* the named domains, not to the sponsor's generic day-to-day. A sponsor bank that maps their personal workflow while ignoring their stated priorities is mis-built, whatever its axis balance.
+- **The mandate is a hypothesis, not a script.** Include at least one assert→drill that tests the diagnosis itself ("you say sales — what's the evidence it's sales and not fulfilment?"), and keep a short closing sweep for leverage the sponsor didn't name. Owner-steered is not owner-limited — the audit's right to surprise them is part of what they're paying for.
+
+**Proxy seats:** when the interviewee represents the owner rather than being the owner (a deputy, a family member, a chief of staff), the bank elicits *two* mandates — the owner's as relayed, and the proxy's own view — and includes a probe for divergence between them.
 
 ### Axis A — Process (steps, handoffs, exceptions, time-sinks)
 
@@ -55,10 +65,11 @@ Axis B is **structural, not an orient afterthought.** Doctrine names the failure
 For each planned seat:
 
 1. **Read the seat into focus.** From the client's source docs and the engagement `AGENTS.md` / `README.md`, establish what this seat does and where it sits in the org. Reuse, don't re-ask, anything the docs already answer.
-2. **Draft Axis A from the process.** Map this seat's steps/handoffs/exceptions; write assert→drill questions that push past the obvious answer to the binding constraint. Build each one on the **assert→drill rubric** below.
-3. **Draft Axis B from the decision surface.** For each of the six Axis-B dimensions above, write probes specific to this seat's authority and domain, calibrated to the seat per the role weighting. Ground decision-support probes in the client's proprietary context (their numbers, pipeline, the knowledge in the owner's head) — a decision-support pilot that isn't so grounded is a commodity the CEO already has. Use the **per-seat probe libraries** below as the starting menu, then make every probe specific to this person.
-4. **Balance check before ship.** Run the **seat-calibrated balance check** below. A bank that never surfaces this seat's decision surface is not ready, whatever its process depth.
-5. **Reconcile the roster.** A per-interviewee bank is the first signal a session is planned; it must reconcile in the `../interviews/` session roster (per `prep/README` + `practice-conventions.md`).
+2. **Lead with the mandate (sponsor seats).** If this is the owner/sponsor seat, draft the Axis-0 mandate-elicitation opening per the rules above, import any priority areas already on record, and re-weight the rest of the bank toward those domains before drafting a single generic process branch.
+3. **Draft Axis A from the process.** Map this seat's steps/handoffs/exceptions; write assert→drill questions that push past the obvious answer to the binding constraint. Build each one on the **assert→drill rubric** below.
+4. **Draft Axis B from the decision surface.** For each of the six Axis-B dimensions above, write probes specific to this seat's authority and domain, calibrated to the seat per the role weighting. Ground decision-support probes in the client's proprietary context (their numbers, pipeline, the knowledge in the owner's head) — a decision-support pilot that isn't so grounded is a commodity the CEO already has. Use the **per-seat probe libraries** below as the starting menu, then make every probe specific to this person.
+5. **Balance check before ship.** Run the **seat-calibrated balance check** below. A bank that never surfaces this seat's decision surface is not ready, whatever its process depth.
+6. **Reconcile the roster.** A per-interviewee bank is the first signal a session is planned; it must reconcile in the `../interviews/` session roster (per `prep/README` + `practice-conventions.md`).
 
 ## The assert→drill rubric — what makes a drill land vs. stall
 
@@ -125,11 +136,12 @@ A checklist, not a word-count. Before a bank goes to session, confirm:
 1. **Axis B is present for this seat at all.** There is at least a real "decisions owned / where they fly blind" probe — no bank ships as a pure process map. This is the non-negotiable floor.
 2. **The weighting matches the seat.** Executive/trader seat → Axis B leads and is the larger share; finance → both substantial; doer → Axis A leads but Axis B is explicit and light. If a doer bank has zero decision probes, or an executive bank is 90% process branches, it is mis-weighted — rebalance.
 3. **The orient leads.** The bank's opening section probes the seat and its leverage *before* the first process branch, and says so (a "do this first; HOLD it" marker), so the live loop holds the orient before the room sinks into mechanism.
-4. **At least one Axis-B probe is grounded in this client's proprietary context** — their numbers, their pipeline, the knowledge in someone's head — not a generic "do you use your data" question.
-5. **Every value-bearing drill is marked `(quantify)`** so the live loop pushes for a band, not a sentiment.
-6. **Each axis pushes past the obvious answer.** Spot-check: pick three questions; if any can be closed in one word with the session no wiser, add the follow-up turn that makes it a drill.
+4. **Sponsor banks lead with the mandate and are weighted to it.** For the owner/sponsor seat only: the bank opens with Axis-0 mandate elicitation, and if priority areas are already on record, the largest share of drills targets those domains. A sponsor bank shaped around the sponsor's personal day-to-day instead of their stated priorities is not ready, whatever its Axis A/B balance.
+5. **At least one Axis-B probe is grounded in this client's proprietary context** — their numbers, their pipeline, the knowledge in someone's head — not a generic "do you use your data" question.
+6. **Every value-bearing drill is marked `(quantify)`** so the live loop pushes for a band, not a sentiment.
+7. **Each axis pushes past the obvious answer.** Spot-check: pick three questions; if any can be closed in one word with the session no wiser, add the follow-up turn that makes it a drill.
 
-If any of 1–3 fails, the bank is not ready. 4–6 are quality gates that sharpen a bank that is structurally sound.
+If any of 1–4 fails, the bank is not ready. 5–7 are quality gates that sharpen a bank that is structurally sound.
 
 ## Inputs
 
