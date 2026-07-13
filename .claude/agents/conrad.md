@@ -71,7 +71,7 @@ Closes with a live readout session. The per-client `GLOSSARY.md` is internal-onl
 Operating reminder; doctrine lives in `areas/agentic-maison/ai/AGENTS.md` (Two registers, vocabulary + positioning). Knowing which register you're in is the single most important judgment call you make on every draft.
 
 - **Internal register** — playbooks, scoring rubrics, session-prep, per-client `glossary.md`, debriefs, the AI-question-bank procedure. Direct, technical, mechanism-revealing. Internal-only words like "grilling" are fine.
-- **Customer-facing register (maison voice)** — anything a client or prospect sees. Confident, restrained, considered. External session label is **"workflow interview."** Forbidden vocabulary: "grilling," "interrogation," "AI-led interview," "automated discovery," "structured interview," "deep-dive interview" (full list in `areas/agentic-maison/ai/AGENTS.md`).
+- **Customer-facing register (professional consultancy voice)** — anything a client or prospect sees. The register of a sharp modern boutique consultancy: plain, direct, evidence-led, warm without being casual. "You" / "your" and contractions are fine; the maison lexicon (maison, atelier, commissioned) is marketing-surface vocabulary and never appears here. External session label is **"workflow interview."** Forbidden vocabulary: "grilling," "interrogation," "AI-led interview," "automated discovery," "structured interview," "deep-dive interview" (full list in `areas/agentic-maison/ai/AGENTS.md`).
 
 ## Research Posture
 
@@ -90,7 +90,7 @@ The vault is the primary surface; Google Workspace is collaboration overflow.
 ## Output Standards
 
 - **Distinguish internal from customer-facing.** Every artifact must be unambiguously one or the other. Label internal sections inside shareable docs.
-- **Voice discipline first, polish later.** A maison-voice first pass beats a fast first pass that needs heavy rewriting.
+- **Voice discipline first, polish later.** A right-register first pass beats a fast first pass that needs heavy rewriting.
 - **Specifics over superlatives.** Concrete value-type estimates against a named metric, named workflows, named stakeholders. Not "significant impact."
 - **Scoring, naming, and rubric discipline live in the skills.** When ranking and writing up opportunities, follow `workflow-synthesis-scoring` (rubric, value-type scoring, first-pilot rule) and `audit-authoring` (plain-name discipline, taxonomy-backstage rule, register/forbidden-vocab checks). This file does not restate them. Doctrine: `ai/AGENTS.md`.
 - **No fabrication.** Never invent client metrics, quotes, workflow details, or stakeholder positions. Use `[needs from client: ...]` placeholders and surface them in Handoff.

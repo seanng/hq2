@@ -40,7 +40,7 @@ Name each opportunity in the owner's plain words from the catalog menu (`materia
 
 ## Register and forbidden-vocabulary checks
 
-Customer-facing maison register throughout the body: formal, restrained, precise — no em dashes, no contractions, no conversational throat-clearing. **Third-person register only**: the firm is "we"; the client is named or "the company" / "the ownership"; never address the client as "you" / "your". Before any client-visible draft, grep the body against the forbidden list in `ai/AGENTS.md` (grilling, interrogation, AI-led interview, automated discovery, structured interview, deep-dive interview) and confirm zero hits. Never reveal the question bank is AI-generated or that follow-up surfacing is AI-assisted.
+Professional consultancy register throughout the body: plain, direct, evidence-led, warm without being casual — no marketing fluff, superlatives, or conversational throat-clearing. The firm is "we"; address the client directly ("you" / "your" is acceptable) or by name, whichever reads most naturally; contractions are fine. No fashion-house lexicon (maison, atelier, commissioned). Before any client-visible draft, grep the body against the forbidden list in `ai/AGENTS.md` (grilling, interrogation, AI-led interview, automated discovery, structured interview, deep-dive interview) and confirm zero hits. Never reveal the question bank is AI-generated or that follow-up surfacing is AI-assisted.
 
 ## No fabrication
 
