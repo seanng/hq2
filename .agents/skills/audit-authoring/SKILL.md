@@ -15,24 +15,27 @@ Step 5 of Discovery, after `workflow-synthesis-scoring` has produced a ranked, s
 
 ## Inputs (all internal — none ship; only the exported PDF does)
 
-- `discovery/synthesis/opportunities.md` — ranked, scored set → §1 table, §3 pilot rationale, §4 opportunity reasoning
-- `discovery/workflows/*.md` — current-state notes → §2
-- `discovery/stakeholder-map.md` — authority + adoption → §5 stakeholder roster (prose, not a table)
+- `discovery/synthesis/opportunities.md` — ranked, scored set → the Executive Summary ranking table, the Proposed Pilot rationale, the Further Opportunities reasoning
+- `discovery/workflows/*.md` — current-state notes → Current-State Workflow
+- `discovery/stakeholder-map.md` — authority + adoption → the stakeholder roster in Risks, Constraints, and Stakeholders (prose, not a table)
 - `discovery/GLOSSARY.md` — terminology only, to keep names/terms accurate; **never quoted or shipped**
-- the engagement `AGENTS.md` / `README.md` — client name, owner, sessions, dates, scoping tier
+- the engagement `AGENTS.md` / `README.md` — client name, owner, sessions, dates, discovery tier
 
 ## Assembly procedure
 
 Stamp a copy of the template, then fill each section from its source. Draft the **body first, the summary last** — the Executive Summary is a précis of what the body concludes, so writing it first invites drift.
 
-The structure is **pilot first, then the rest**: the #1 opportunity is treated in full in §3, every other opportunity once in §4, and no opportunity is described twice in prose. Each opportunity's score rationale is shown inline as three Impact / Feasibility / Time axis bullets (in §3 for the pilot, in §4 for the rest) — there is no separate scoring appendix.
+The structure is **pilot first, then the rest**: the #1 opportunity is treated in full under **Proposed Pilot**, every other opportunity once under **Further Opportunities**, and no opportunity is described twice in prose. Each opportunity's score rationale is shown inline as three Impact / Feasibility / Time axis bullets (under Proposed Pilot for the pilot, under Further Opportunities for the rest) — there is no separate scoring appendix.
 
-1. **§2 Current-State Workflow** ← `workflows/*.md`. Walk the chain; name bottlenecks; link each to the opportunity number it feeds (the §1 table numbers).
-2. **§3 Proposed Pilot** ← the #1 opportunity: the one-line first-move justification, then #1's score rationale as the three axis bullets, then the pilot build fields. No "what comes after" list here — the expansions are §4.
-3. **§4 Further Opportunities** ← `opportunities.md` per-opportunity reasoning for rows 2..n, in ranked order, each as a prose lead plus the three axis bullets, framed as the sequenced expansion path. Numbering continues from the §1 table (starts at 2). Any opportunities beyond the 3-5 cap are named in one line each in the closing tail.
-4. **§5 Risks, Constraints, and Stakeholders** ← `stakeholder-map.md` + the adoption sub-factor behind each Feasibility score (so §5 and the §1 scores cohere).
-5. **§1 Executive Summary** (now) ← the headline finding, the ranked table (Opportunity · Description · Impact · Feasibility · Time), and the recommended first pilot named.
-6. **Method and Coverage** ← sessions, who, dates; and the coverage statement (who was interviewed and, when partial, what is not yet covered).
+Fill the sections in the template's exact order and by their exact names (do not renumber; the template owns the section list and headings):
+
+1. **Current-State Workflow** ← `workflows/*.md`. Walk the chain; name bottlenecks; link each to the opportunity it feeds, **by name** (the plain names in the ranking table).
+2. **Proposed Pilot** ← the #1 opportunity: the one-line first-move justification, then #1's score rationale as the three axis bullets, then the pilot build fields. No "what comes after" list here — the expansions live under Further Opportunities.
+3. **Further Opportunities** ← `opportunities.md` per-opportunity reasoning for the remaining opportunities, in ranked order, each as a prose lead plus the three axis bullets, framed as the sequenced expansion path. Any opportunities beyond the 3-5 cap are named in one line each in the closing tail.
+4. **Risks, Constraints, and Stakeholders** ← `stakeholder-map.md` + the adoption sub-factor behind each Feasibility score (so the roster and the ranking-table scores cohere). Stakeholders are prose, never a table.
+5. **Conclusion** ← the closing summary: the finding, the recommended first move, the sequenced larger prize, and the through-line design principle.
+6. **Executive Summary** (now) ← the headline finding, the ranked table under an "AI Opportunities Ranking" subheading (# · Opportunity · Description · Impact · Feasibility · Time), the three-axes explainer below the table, and the recommended first pilot named.
+7. **Introduction** ← how many sessions, with whom, over what period; that the client's own material was a reference but the substance comes from the conversations; then the **coverage statement** (who was interviewed and, when partial, what is not yet covered). The coverage statement is required whenever coverage is partial.
 
 ## Plain-name discipline
 
@@ -40,7 +43,7 @@ Name each opportunity in the owner's plain words from the catalog menu (`materia
 
 ## Register and forbidden-vocabulary checks
 
-Professional consultancy register throughout the body: plain, direct, evidence-led, warm without being casual — no marketing fluff, superlatives, or conversational throat-clearing. The firm is "we"; address the client directly ("you" / "your" is acceptable) or by name, whichever reads most naturally; contractions are fine. No fashion-house lexicon (maison, atelier, commissioned). Before any client-visible draft, grep the body against the forbidden list in `ai/AGENTS.md` (grilling, interrogation, AI-led interview, automated discovery, structured interview, deep-dive interview) and confirm zero hits. Never reveal the question bank is AI-generated or that follow-up surfacing is AI-assisted.
+Professional consultancy register throughout the body: plain, direct, evidence-led, warm without being casual — no marketing fluff, superlatives, or conversational throat-clearing. The firm is "we"; address the client directly ("you" / "your" is acceptable) or by name, whichever reads most naturally; contractions are fine. No fashion-house lexicon (maison, atelier, commissioned). Before any client-visible draft, grep the body against the forbidden-vocabulary list in `ai/AGENTS.md` ("Forbidden vocabulary in client-facing copy" — the canonical list; never copy it here) and confirm zero hits. Never reveal the question bank is AI-generated or that follow-up surfacing is AI-assisted.
 
 ## No fabrication
 
@@ -50,11 +53,13 @@ Never invent a client number, quote, workflow detail, or stakeholder position. `
 
 Work the full **pre-ship checklist in the template** before shipping. DRAFT while drafting (frontmatter `status: DRAFT`, banner at top, draft marker in the footer); on FINAL (post operator review) flip the status and delete the banner and the draft footer marker. Render with `areas/agentic-maison/ai/2-discovery/render-audit.py <source.md>`, which writes the prose-shaped PDF to the engagement's `discovery/shared/` folder as `ai-opportunity-audit-<slug>.pdf` — the filename is **stable across DRAFT and FINAL**; draft state lives only in the footer marker and frontmatter, never the filename. Not `.docx`; not a separate `deliverables/` folder.
 
-`render-audit.py` produces a **branded cover page** from frontmatter (client name, the fixed label "AI Opportunities Audit Report", "Prepared on <date>"; brand palette paper-cream `#efe8d6`, ink `#14110b`, brass `#7a4d18`) and stamps a running **header** ("Agentic Maison" + report/client line) and a **page-number footer** onto every content page. The markdown body carries no title block, no H1, and no horizontal rules between sections; the cover and the running furniture are the renderer's job. Headings are unnumbered noun phrases (the opening method/coverage runs as an unlabeled preamble; the summary section is "Overview"); cross-references use section names, not numbers.
+`render-audit.py` produces a **branded cover page** from frontmatter and stamps a running **header** (the wordmark + report/client line) and a **page-number footer** onto every content page. The cover fields, the tier-aware report label, and the brand palette are canonical in the renderer and documented once in the template's PART A — do not restate them here. The markdown body carries no title block, no H1, and no horizontal rules between sections; the cover and the running furniture are the renderer's job. Headings are the template's unnumbered noun phrases — the report opens with **Introduction** and the summary section is **Executive Summary** — and cross-references use section names, not numbers.
 
 ## Outputs
 
 - `discovery/sources/audit.md` — the audit source markdown (internal working file).
 - `discovery/shared/ai-opportunity-audit-<slug>.pdf` — the exported client deliverable (the only artifact that ships).
 
-Closing the engagement: a live readout session and a case-study draft follow (see `ai/AGENTS.md`).
+The audit ships on its own — the pilot proposal is a **separate** artifact (`sources/pilot-proposal.md`), never bundled into or referenced from the diagnostic audit; its disclosure is conditional (Part 2 of the presentation).
+
+Closing the engagement: a **two-part live presentation** (Part 1 audit readout · conditional Part 2 pilot proposal) and, after it, a case-study draft (see `ai/AGENTS.md` and `2-discovery/README.md`).

@@ -5,7 +5,7 @@ description: Generate the pre-session question bank for an AI Practice Discovery
 
 # Question-Bank Authoring
 
-Generate the pre-session question bank that Conrad pre-loads before a workflow interview. This is the **Step-1 prep procedure** in Discovery — the front of the lifecycle whose downstream counterparts are `grill-workflow` (the live session), `workflow-synthesis-scoring` (synthesis), and `audit-authoring` (the deliverable). It produces the artifact shaped by the template at `areas/agentic-maison/ai/_templates/ai-client-engagement/discovery/prep/question-bank.md`.
+Generate the pre-session question bank that Conrad pre-loads before a workflow interview. This is the **Step-1 prep procedure** in Discovery — the front of the lifecycle whose downstream counterparts are `grill-workflow` (the live session), `workflow-synthesis-scoring` (synthesis), and `audit-authoring` (the deliverable). It produces the artifact shaped by the template at `areas/agentic-maison/ai/_templates/ai-client-engagement/discovery/prep/question-bank.md`. The per-seat bank is an **overlay over the practice-standard base** — the session spine and the two chosen zone banks in `2-discovery/question-banks/` — never a fresh place to author practice-standard questions.
 
 **Internal only.** This skill documents the question-generation mechanism, which `ai/AGENTS.md` marks unsayable to clients. Nothing here, and nothing about *how* the bank is built, ever appears in client-facing material. The bank itself never leaves our system.
 
@@ -33,11 +33,12 @@ The failure this prevents is the documented one: the room drifts to process and 
 
 ### Axis 0 — Mandate (owner/sponsor seats only)
 
-For the seat that commissioned the engagement — the owner, or whoever represents them — the bank opens with **mandate elicitation**, before any Axis A/B branch: what made them commission this, where they believe the opportunity or pain is (sales? company knowledge? decision support?), and what a win looks like. Three rules:
+For the seat that commissioned the engagement — the owner, or whoever represents them — the bank opens with **mandate elicitation**, before any Axis A/B branch: what made them commission this, where they believe the opportunity or pain is (sales? company knowledge? decision support?), and what a win looks like. Four rules:
 
 - **The mandate leads the sponsor bank.** Its opening section is mandate elicitation, marked "ask first; HOLD" — the same structural device the orient uses. Everything after it in the live session is steered by the answer.
 - **Named priorities re-weight the bank.** If the source docs, the engagement scaffold, or a prior conversation already name the sponsor's priority areas, the bank's largest share of drills must target those domains — Axis A and Axis B applied *inside* the named domains, not to the sponsor's generic day-to-day. A sponsor bank that maps their personal workflow while ignoring their stated priorities is mis-built, whatever its axis balance.
 - **The mandate is a hypothesis, not a script.** Include at least one assert→drill that tests the diagnosis itself ("you say sales — what's the evidence it's sales and not fulfilment?"), and keep a short closing sweep for leverage the sponsor didn't name. Owner-steered is not owner-limited — the audit's right to surprise them is part of what they're paying for.
+- **Pin the commercial baseline.** The Axis-0 section must carry the annual sales/revenue pin. The standard question text and its assert-back form live in the session spine (`2-discovery/question-banks/session-spine.md`, orient + wrap); the enforcement and operator-waiver rule is canonical in `grill-workflow` ("Open with the mandate") — do not restate either here or in the bank. A sponsor bank that cannot produce this figure is not ready.
 
 **Proxy seats:** when the interviewee represents the owner rather than being the owner (a deputy, a family member, a chief of staff), the bank elicits *two* mandates — the owner's as relayed, and the proxy's own view — and includes a probe for divergence between them.
 
@@ -145,15 +146,17 @@ If any of 1–4 fails, the bank is not ready. 5–7 are quality gates that sharp
 
 ## Inputs
 
-- Client source docs (org chart, process docs, flowcharts, prior notes) — the raw material.
-- Engagement `AGENTS.md` / `README.md` — client, owner, stakeholders, industry, engagement-specific decisions.
-- `discovery/stakeholder-map.md` — who, role, decision authority, adoption risk (seeds Axis B authority probes).
-- The shared starter bank (`prep/question-bank.md`) — seeds the per-interviewee banks.
+The per-seat bank is an **overlay** built over the practice-standard interview assets — not another place practice-standard questions live. Four inputs, in order:
+
+1. **The practice session spine** — `2-discovery/question-banks/session-spine.md`. The standard mandate/orient opening and the wrap/close for the owner session.
+2. **The two chosen zone banks** — `2-discovery/question-banks/zone-*.md`, for the zones this engagement covers. These are the compounding, practice-level drills; the per-seat bank layers *on top of* them, it does not restate them.
+3. **Engagement intake / context** — the registration form or scoping call (the revenue-bottleneck answer, tools, team, chosen zones), plus the engagement `AGENTS.md` / `README.md` (client, owner, stakeholders, industry, decisions) and `discovery/stakeholder-map.md` (authority + adoption, seeding Axis B). Client source docs (org chart, process docs, flowcharts, prior notes) are the raw material.
+4. **Client-specific per-seat asserts** — the 3–5 sharpened assert→drill hypotheses you write from the source docs and intake, dropped into the relevant zone banks for this seat.
 
 ## Outputs
 
-- `discovery/prep/question-bank-<slug>.md` — the per-interviewee bank, both axes, stamped from the template.
-- The shared `discovery/prep/question-bank.md` kept current as the business comes into focus (keep questions that earned their place; cut the ones that landed flat).
+- `discovery/prep/question-bank-<slug>.md` — the per-interviewee **overlay** bank (client-specific asserts + seat orient, both axes), stamped from the template. Slug shared with `../interviews/<slug>.md`, so the session roster and the synthesis completeness gate reconcile.
+- The compounding practice-standard assets — `2-discovery/question-banks/session-spine.md` and the `zone-*.md` banks — kept current after each session (fold what landed in; cut what stalled). The generic per-engagement `prep/question-bank.md` is a thin starter/index only, not a second home for practice-standard questions.
 
 ## Hand-off to the session
 

@@ -1,7 +1,7 @@
 ---
 name: sam
 description: Content writer. Produces marketing copy, email sequences, cold emails, social content, and editorial content.
-model: claude-sonnet-4-6
+model: claude-sonnet-5
 skills:
   - copywriting
   - copy-editing

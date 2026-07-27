@@ -1,7 +1,7 @@
 ---
 name: isaac
 description: Trend researcher and market intelligence analyst. Discovers niches, emerging trends, and business opportunities through deep online research.
-model: claude-sonnet-4-5
+model: claude-sonnet-5
 skills:
   - hq-vault-naming
   - hq-prd-worker-lifecycle

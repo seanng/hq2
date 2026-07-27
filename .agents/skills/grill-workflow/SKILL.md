@@ -59,6 +59,8 @@ When the interviewee is the engagement's owner or sponsor — the person who com
 
 **If the mandate was already captured upstream** (a registration form, a prior conversation, the engagement scaffold), don't re-elicit it cold — assert it back and sharpen it ("you wrote that X is the bottleneck — what does that look like in a normal week?"), then steer as usual. The elicitation is for when no mandate is on record; the steering rules below apply either way.
 
+**Pin the annual sales/revenue figure as part of the mandate opening** — approximate, in whatever terms the business runs on (turnover, GMV, fee income). It anchors every downstream value projection and the engagement's commercial sizing. If it's already on record, assert it back to confirm; if the opening didn't land it, it is a mandatory pin in the wrap pass — by default, do not let an owner/sponsor session end without it. **Exception (operator override):** where the client declines or genuinely cannot give a revenue figure, the operator may explicitly waive the revenue baseline for that engagement. When waived, pin instead a named operational metric the client *does* run on — quote volume, win rate, headcount-hours, order count — so downstream value can be framed against a real number the client gave. Never substitute an invented or estimated revenue figure for the one they withheld.
+
 The stated mandate becomes the session's steering thread: spend the majority of the session drilling into the named domains — apply the process and decision techniques below *inside* those domains, not to the person's generic day-to-day. A sponsor session that maps the sponsor's personal workflow while ignoring their stated priorities has missed the point of the seat.
 
 Two guardrails:
@@ -98,21 +100,16 @@ The glossary is **internal-only**. Never share it back to the interviewee unless
 
 ### Offer Decisions sparingly
 
-Only offer to capture a Business Decision when all three are true:
-
-1. **Hard to reverse** — the cost of changing your mind later is meaningful
-2. **Surprising without context** — a future reader will wonder "why did they do it this way?"
-3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons
-
-If any of the three is missing, skip it. Use the format in [DECISIONS-FORMAT.md](./DECISIONS-FORMAT.md).
+Only offer to capture a Business Decision when it passes the three-part test — hard to reverse · surprising without context · the result of a real trade-off — canonical under "When to offer a Decision" in [DECISIONS-FORMAT.md](./DECISIONS-FORMAT.md). If any part is missing, skip it; use the format defined there.
 
 ## Before closing the session — live confirm pass
 
 While the interviewee is still in the room, do a short wrap before you end the call. Its job is to close the cheap gaps in person rather than punt them to an async follow-up. Quickly:
 
 - **Confirm the decisions you are unsure you got right** — "so the call on X is yours, and you make it weekly off the spreadsheet — did I get that right?"
-- **Pin the one or two numbers or facts that are cheap to ask now** — a quantity, a frequency, a threshold you left fuzzy.
+- **Pin the one or two numbers or facts that are cheap to ask now** — a quantity, a frequency, a threshold you left fuzzy. (For an owner/sponsor session, the annual sales/revenue figure is a mandatory pin here if the mandate opening didn't land it.)
 - **Surface any contradiction you noticed** while it can still be resolved live.
+- **Lock the next commitment before they leave.** Where the host process has a downstream delivery or presentation to schedule, book its date now rather than chasing it async once they have gone. If the engagement might expand to further sessions, agree that branch and its scheduling here too, rather than assuming it. (For an AI-Practice owner session this is the doctrine close: book the presentation/readout date when coverage is sufficient, or agree the paid interview expansion — `2-discovery/README.md`, Step 2.)
 
 Keep it to the handful of items that genuinely close in under a minute each. Anything heavier — a whole topic you did not reach, a number they would need to look up — is for the async follow-up, so you are not keeping the interviewee on the clock. The deeper reflection happens after, off the clock (next).
 
